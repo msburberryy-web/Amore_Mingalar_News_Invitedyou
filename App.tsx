@@ -23,10 +23,10 @@ const ElegantName: React.FC<{ name: string; lang: Language }> = ({ name, lang })
   
   return (
     <span className="inline-flex items-center break-words max-w-full overflow-visible px-2 md:px-6">
-      <span className="font-['Great_Vibes'] text-5xl xs:text-6xl md:text-7xl lg:text-8xl gold-text-shimmer leading-[1.5] py-4 px-3 inline-block">
+      <span className="font-['Great_Vibes'] text-6xl xs:text-7xl md:text-8xl lg:text-9xl gold-text-shimmer leading-[1.2] py-8 md:py-12 px-4 inline-block transform-gpu">
         {firstChar}
       </span>
-      <span className="text-gray-900 text-sm xs:text-lg md:text-2xl lg:text-3xl tracking-tight font-serif italic -ml-2">
+      <span className="text-gray-900 text-base xs:text-xl md:text-3xl lg:text-4xl tracking-tight font-serif italic -ml-4 md:-ml-6 mt-4">
         {rest}
       </span>
     </span>
@@ -59,6 +59,46 @@ const ScrollReveal: React.FC<{ children: React.ReactNode; className?: string }> 
     );
 };
 
+// Simplified Japanese Date rendering for better readability and consistent sizing
+const JapaneseDateDisplay: React.FC<{ dateStr: string; day: string }> = ({ dateStr, day }) => {
+  const date = new Date(dateStr);
+  const year = date.getFullYear();
+  const month = date.getMonth() + 1;
+  const dayNum = date.getDate();
+
+  return (
+    <div className="flex flex-col items-center select-none text-[#7c6231] font-serif">
+      <div className="text-3xl md:text-5xl font-bold flex items-baseline gap-1">
+        <span>{year}</span>
+        <span className="text-lg md:text-2xl">年</span>
+        <span>{month}</span>
+        <span className="text-lg md:text-2xl">月</span>
+        <span>{dayNum}</span>
+        <span className="text-lg md:text-2xl">日</span>
+      </div>
+      <div className="text-sm md:text-xl font-bold opacity-70 mt-3 tracking-widest">{day}</div>
+    </div>
+  );
+};
+
+// Simplified Japanese Time rendering for consistent sizing
+const JapaneseTimeDisplay: React.FC<{ timeStr: string }> = ({ timeStr }) => {
+  return (
+    <div className="flex flex-col items-center gap-1 text-[#7c6231] select-none font-serif">
+      <div className="text-2xl md:text-4xl font-bold flex items-center gap-1">
+        <span className="text-lg md:text-2xl">午前</span>
+        <span>10:30</span>
+        <span className="text-lg md:text-2xl ml-1">から</span>
+      </div>
+      <div className="text-2xl md:text-4xl font-bold flex items-center gap-1">
+        <span className="text-lg md:text-2xl">午後</span>
+        <span>1:00</span>
+        <span className="text-lg md:text-2xl ml-1">まで</span>
+      </div>
+    </div>
+  );
+};
+
 const App: React.FC = () => {
   const [data, setData] = useState<WeddingData>(INITIAL_DATA);
   const [isLoading, setIsLoading] = useState(true);
@@ -73,6 +113,8 @@ const App: React.FC = () => {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const footerRef = useRef<HTMLElement>(null);
 
+  const isAdminMode = new URLSearchParams(window.location.search).get('mode') === 'admin';
+
   useEffect(() => {
     const loadData = async () => {
       const params = new URLSearchParams(window.location.search);
@@ -81,15 +123,12 @@ const App: React.FC = () => {
       try {
         let finalData = { ...INITIAL_DATA };
         
-        // 1. Try embedded data if present
         if ((window as any).EMBEDDED_WEDDING_DATA) {
           finalData = { ...finalData, ...(window as any).EMBEDDED_WEDDING_DATA };
         } 
         
-        // 2. Try URL event parameter (overrides everything)
         if (event) {
           const fileName = `wedding-data_${event.replace('.', '_')}.json`;
-          // Fetch relative to the current URL path to handle subpath hosting correctly
           const response = await fetch(`./${fileName}`);
           if (response.ok) {
             const remoteData = await response.json();
@@ -98,7 +137,6 @@ const App: React.FC = () => {
              console.warn(`Event file not found: ${fileName}. Falling back to default.`);
           }
         } else {
-          // 3. Try local storage if no URL param
           const saved = localStorage.getItem('invitation_data');
           if (saved) {
             finalData = { ...finalData, ...JSON.parse(saved) };
@@ -251,24 +289,48 @@ const App: React.FC = () => {
                             </p>
                         </div>
 
-                        <div className="border-t border-wedding-gold/10 pt-4 md:pt-8 w-full max-w-2xl lg:max-w-3xl px-2 md:px-12">
-                            <div className="flex flex-col md:flex-row justify-between items-center gap-6 xs:gap-8 md:gap-10 text-center">
+                        <div className="border-t border-wedding-gold/10 pt-4 md:pt-8 w-full max-w-2xl lg:max-w-4xl px-2 md:px-12">
+                            <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 xs:gap-8 md:gap-10 text-center">
                                 <div className="flex flex-col items-center md:border-r border-gray-100 md:pr-10 w-full md:w-auto">
-                                    <span className="text-wedding-gold font-bold mb-0.5 md:mb-1 uppercase text-[10px] xs:text-[11px] md:text-[12px] tracking-widest opacity-80">📅 {lang === 'my' ? 'နေ့ရက်' : lang === 'ja' ? '開催日' : 'Date'}</span>
-                                    <p className={`leading-tight text-[#7c6231] font-semibold ${lang === 'my' ? 'font-myanmar text-sm xs:text-base md:text-2xl' : 'font-elegant italic text-lg xs:text-xl md:text-3xl'}`}>
-                                      {elegantDate}
-                                    </p>
-                                    <p className={`opacity-60 text-[9px] xs:text-[11px] md:text-xs font-bold tracking-widest mt-0.5 uppercase ${lang === 'my' ? 'font-myanmar text-wedding-gold' : ''}`}>
-                                      {getDayTranslation(data.day, lang)}
-                                    </p>
+                                    <div className="text-wedding-gold font-bold mb-4 uppercase text-[10px] xs:text-[11px] md:text-[12px] tracking-widest opacity-80 flex items-center gap-2">
+                                      <span className="scale-125">📅</span> {lang === 'my' ? 'နေ့ရက်' : lang === 'ja' ? '開催日' : 'Date'}
+                                    </div>
+                                    {lang === 'ja' ? (
+                                      <JapaneseDateDisplay dateStr={data.date} day={getDayTranslation(data.day, 'ja')} />
+                                    ) : (
+                                      <>
+                                        <p className={`leading-tight text-[#7c6231] font-semibold ${lang === 'my' ? 'font-myanmar text-sm xs:text-base md:text-2xl' : 'font-elegant italic text-lg xs:text-xl md:text-3xl'}`}>
+                                          {elegantDate}
+                                        </p>
+                                        <p className={`opacity-60 text-[9px] xs:text-[11px] md:text-xs font-bold tracking-widest mt-0.5 uppercase ${lang === 'my' ? 'font-myanmar text-wedding-gold' : ''}`}>
+                                          {getDayTranslation(data.day, lang)}
+                                        </p>
+                                      </>
+                                    )}
                                 </div>
                                 <div className="flex flex-col items-center md:border-r border-gray-100 md:px-10 w-full md:w-auto">
-                                    <span className="text-wedding-gold font-bold mb-0.5 md:mb-1 uppercase text-[10px] xs:text-[11px] md:text-[12px] tracking-widest opacity-80">⏰ {lang === 'my' ? 'အချိန်' : lang === 'ja' ? '時間' : 'Time'}</span>
-                                    <p className={`leading-tight text-[#7c6231] font-semibold ${lang === 'my' ? 'font-myanmar text-sm xs:text-base md:text-2xl' : 'font-elegant italic text-lg xs:text-xl md:text-3xl'}`}>{data.time[lang]}</p>
+                                    <div className="text-wedding-gold font-bold mb-4 uppercase text-[10px] xs:text-[11px] md:text-[12px] tracking-widest opacity-80 flex items-center gap-2">
+                                      <span className="scale-125">⏰</span> {lang === 'my' ? 'အချိန်' : lang === 'ja' ? '時間' : 'Time'}
+                                    </div>
+                                    {lang === 'ja' ? (
+                                      <JapaneseTimeDisplay timeStr={data.time[lang]} />
+                                    ) : (
+                                      <p className={`leading-tight text-[#7c6231] font-semibold ${lang === 'my' ? 'font-myanmar text-sm xs:text-base md:text-2xl' : 'font-elegant italic text-lg xs:text-xl md:text-3xl'}`}>
+                                        {data.time[lang]}
+                                      </p>
+                                    )}
                                 </div>
                                 <div className="flex flex-col items-center md:pl-10 w-full md:w-auto">
-                                    <span className="text-wedding-gold font-bold mb-0.5 md:mb-1 uppercase text-[10px] xs:text-[11px] md:text-[12px] tracking-widest opacity-80">📍 {lang === 'my' ? 'နေရာ' : lang === 'ja' ? '場所' : 'Location'}</span>
-                                    <p className={`leading-tight text-[#7c6231] font-semibold max-w-[160px] xs:max-w-[200px] md:max-w-none ${lang === 'my' ? 'font-myanmar text-sm xs:text-base md:text-xl' : 'font-elegant italic text-lg xs:text-xl md:text-3xl'}`}>{data.location.name[lang]}</p>
+                                    <div className="text-wedding-gold font-bold mb-4 uppercase text-[10px] xs:text-[11px] md:text-[12px] tracking-widest opacity-80 flex items-center gap-2">
+                                      <span className="scale-125">📍</span> {lang === 'my' ? 'နေရာ' : lang === 'ja' ? '場所' : 'Location'}
+                                    </div>
+                                    <div className={`leading-tight text-[#7c6231] font-bold max-w-[200px] xs:max-w-[240px] md:max-w-none ${lang === 'my' ? 'font-myanmar text-sm xs:text-base md:text-xl' : 'font-elegant italic text-lg xs:text-xl md:text-3xl'} ${lang === 'ja' ? 'not-italic font-serif leading-tight' : ''}`}>
+                                      {lang === 'ja' ? (
+                                        <div className="flex flex-col items-center gap-1 text-2xl md:text-4xl">
+                                          {data.location.name[lang]}
+                                        </div>
+                                      ) : data.location.name[lang]}
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -360,25 +422,55 @@ const App: React.FC = () => {
             </ScrollReveal>
         )}
 
-        <footer ref={footerRef} className="py-20 bg-white text-center border-t border-gray-100">
-             <div className="flex items-center justify-center gap-6 mb-6">
-                 <div className="w-16 h-px bg-wedding-gold opacity-30"></div>
-                 <span className="font-serif text-wedding-gold text-2xl tracking-[0.2em] italic">{data.groomName.en} & {data.brideName.en}</span>
-                 <div className="w-16 h-px bg-wedding-gold opacity-30"></div>
+        <footer ref={footerRef} className="py-48 bg-[#FAF8F2] text-center border-t border-wedding-gold/10 relative overflow-hidden">
+             <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-wedding-gold/30 to-transparent"></div>
+             
+             <div className="max-w-6xl mx-auto px-6 relative z-10">
+                 <div className="flex items-center justify-center gap-12 mb-20">
+                     <div className="w-24 md:w-48 h-px bg-wedding-gold opacity-20"></div>
+                     <span className="font-['Great_Vibes'] text-6xl md:text-9xl text-wedding-gold gold-text-shimmer drop-shadow-lg">{data.groomName.en} & {data.brideName.en}</span>
+                     <div className="w-24 md:w-48 h-px bg-wedding-gold opacity-20"></div>
+                 </div>
+
+                 <div className="mb-24 space-y-6">
+                    <p className="text-sm md:text-base uppercase tracking-[1em] text-gray-400 font-bold">Forever Begins Now</p>
+                    <p className="text-wedding-text font-serif italic text-2xl md:text-3xl opacity-60">"May your love be modern enough to survive the times, but old-fashioned enough to last forever."</p>
+                 </div>
+
+                 <div className="pt-24 border-t border-wedding-gold/10 flex flex-col items-center">
+                    <div className="flex items-center gap-6 mb-8 group cursor-pointer">
+                        <Heart size={32} className="text-wedding-gold fill-wedding-gold/20 group-hover:scale-125 transition-transform" />
+                        <span className="font-serif text-wedding-gold text-4xl md:text-7xl tracking-[0.15em] font-medium">Amoré.wedding Tokyo</span>
+                    </div>
+                    <div className="space-y-4">
+                        <p className="text-sm md:text-lg text-gray-400 tracking-[0.4em] font-medium italic opacity-60 uppercase">Exclusive Premium Invitation Design & Craft</p>
+                        <p className="text-xs text-gray-300 mt-16 tracking-[0.3em] font-light">© 2025 AMORÉ WEDDING STUDIOS. TOKYO | SINGAPORE | YANGON</p>
+                    </div>
+                 </div>
              </div>
-             <p className="text-[12px] uppercase tracking-[0.4em] text-gray-400 font-bold">Forever Begins Now</p>
-             <p className="text-[10px] text-gray-300 mt-12 italic">© 2025 Amoré.wedding Tokyo</p>
+             
+             <div className="absolute -bottom-20 -right-20 text-wedding-gold opacity-[0.04] rotate-12 pointer-events-none">
+                <Heart size={600} fill="currentColor" />
+             </div>
+             <div className="absolute -top-20 -left-20 text-wedding-gold opacity-[0.04] -rotate-12 pointer-events-none">
+                <Heart size={400} fill="currentColor" />
+             </div>
+             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-wedding-gold opacity-[0.02] pointer-events-none">
+                <KanoteOrnament className="w-[1200px] h-auto" />
+             </div>
         </footer>
       </div>
 
-      <div className={`fixed bottom-10 right-10 flex flex-col gap-6 transition-all duration-1000 z-50 floating-controls ${isOpened ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`}>
-        {data.showRsvp && (
-           <button onClick={() => setView('rsvp')} className="p-5 bg-wedding-gold text-white rounded-full shadow-2xl hover:bg-black hover:scale-110 transition-all active:scale-95 animate-pulse"><Heart size={24} fill="currentColor" /></button>
-        )}
-        <button onClick={() => setShowAdmin(true)} className="p-5 bg-white/95 backdrop-blur rounded-full shadow-2xl text-gray-400 hover:text-wedding-gold border border-gray-100 hover:scale-110 transition-all active:scale-95"><Settings size={24} /></button>
-        <button onClick={handleShare} className="p-5 bg-white/95 backdrop-blur rounded-full shadow-2xl text-gray-400 hover:text-wedding-gold border border-gray-100 hover:scale-110 transition-all active:scale-95"><Share2 size={24} /></button>
-        {data.musicUrl && (<button onClick={toggleMusic} className="p-5 bg-white/95 backdrop-blur rounded-full shadow-2xl text-gray-400 hover:text-wedding-gold border border-gray-100 hover:scale-110 transition-all active:scale-95">{isPlaying ? <Volume2 size={24} /> : <VolumeX size={24} />}</button>)}
-      </div>
+      {isAdminMode && (
+        <div className={`fixed bottom-10 right-10 flex flex-col gap-6 transition-all duration-1000 z-50 floating-controls ${isOpened ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`}>
+          {data.showRsvp && (
+             <button onClick={() => setView('rsvp')} className="p-5 bg-wedding-gold text-white rounded-full shadow-2xl hover:bg-black hover:scale-110 transition-all active:scale-95 animate-pulse"><Heart size={24} fill="currentColor" /></button>
+          )}
+          <button onClick={() => setShowAdmin(true)} className="p-5 bg-white/95 backdrop-blur rounded-full shadow-2xl text-gray-400 hover:text-wedding-gold border border-gray-100 hover:scale-110 transition-all active:scale-95"><Settings size={24} /></button>
+          <button onClick={handleShare} className="p-5 bg-white/95 backdrop-blur rounded-full shadow-2xl text-gray-400 hover:text-wedding-gold border border-gray-100 hover:scale-110 transition-all active:scale-95"><Share2 size={24} /></button>
+          {data.musicUrl && (<button onClick={toggleMusic} className="p-5 bg-white/95 backdrop-blur rounded-full shadow-2xl text-gray-400 hover:text-wedding-gold border border-gray-100 hover:scale-110 transition-all active:scale-95">{isPlaying ? <Volume2 size={24} /> : <VolumeX size={24} />}</button>)}
+        </div>
+      )}
 
       {showAdmin && <AdminPanel data={data} onUpdate={handleUpdateData} onClose={() => setShowAdmin(false)} />}
     </div>
