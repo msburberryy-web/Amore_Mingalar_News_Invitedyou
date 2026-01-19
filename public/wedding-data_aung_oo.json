@@ -1,0 +1,57 @@
+{
+  "title": {
+    "en": "Wedding Invitation",
+    "ja": "結婚披露宴のご案内",
+    "my": "မင်္ဂလာဦးဆွမ်းကျွေး ဖိတ်ကြားလွှာ"
+  },
+  "coverTitle": {
+    "en": "Wedding Announcement",
+    "ja": "結婚のご報告",
+    "my": "မင်္ဂလာသတင်းလွှာ"
+  },
+  "welcomeMessage": {
+    "en": "We cordially invite you to join our Wedding Reception.",
+    "ja": "皆様にご臨席賜りたく ご案内申し上げます",
+    "my": "ကျွန်ုပ်တို့၏ မင်္ဂလာဦးဆွမ်းကျွေးပွဲသို့ ကြွရောက်ချီးမြှင့်ပေးပါရန် လေးစားစွာဖြင့် ဖိတ်ကြားအပ်ပါသည်။"
+  },
+  "groomName": {
+    "en": "Aung",
+    "ja": "アウン",
+    "my": "အောင်"
+  },
+  "brideName": {
+    "en": "Oo",
+    "ja": "ウー",
+    "my": "ဦး"
+  },
+  "date": "2026-03-27T10:30:00",
+  "time": {
+    "en": "10:30 AM to 1:00 PM",
+    "ja": "午前10時30分から午後1時まで",
+    "my": "နံနက် (၁၀:၃၀) နာရီမှ (၁:၀၀) နာရီအထိ"
+  },
+  "day": "Friday",
+  "location": {
+    "name": {
+      "en": "Satori Vihara",
+      "ja": "悟り寺院",
+      "my": "ဆာတိုးရီဝိဟာရ မြန်မာဘုန်းကြီးကျောင်း"
+    },
+    "address": {
+      "en": "Satori Vihara, 1330-1 Kamikarako, Higashimatsuyama, Saitama 355-0077, Japan. 【Access】 7-minute walk from Tsukinowa Station (South Exit), Tobu Tojo Line.",
+      "ja": "〒355-0077 埼玉県東松山市上唐子1330-1悟り寺院 【アクセス】 東武東上線 月の輪駅 南口から徒歩7分",
+      "my": "ဆာတိုးရီဝိဟာရ မြန်မာဘုန်းကြီးကျောင်း၊ 1330-1 ခါမိခရခို၊ ဟိဂါရှီမတ်စုယာမာ၊ စိုင်းတမ ၃၅၅-၀၀၇၇၊ ဂျပန်။ 【သွားလာရန်】 တိုဘူတိုဂျိုးလိုင်း၊ ဆူကီနိုဝါ ဘူတာ (တောင်ဘက်ထွက်ပေါက်) မှ လမ်းလျှောက် ၇ မိနစ်။ "
+    },
+    "mapUrl": "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d25809.846975017903!2d139.342528!3d36.039071!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x601ed5a07c3772c9%3A0x9f9dba834e8caf26!2z4YCG4YCs4YCQ4YCt4YCv4YC44YCb4YCu4YCd4YCt4YCf4YCs4YCbIOGAmeGAvOGAlOGAuuGAmeGArOGAmOGAr-GAlOGAuuGAuOGAgOGAvOGAruGAuOGAgOGAu-GAseGArOGAhOGAuuGAuA!5e0!3m2!1sen!2sjp!4v1766648514831!5m2!1sen!2sjp"
+  },
+  "googleScriptUrl": "https://script.google.com/macros/s/AKfycbwK7R7OO0kGb0Aw_0Ej2FjaxLwfR-4VNo_sisw2nYE6xe9Gbbl_Y317S3b5K51UCfIO6A/exec",
+  "images": {
+    "hero": "photos/aung_oo/cover.jpg",
+    "groom": "photos/aung_oo/groom.jpg",
+    "bride": "photos/aung_oo/bride.jpg"
+  },
+  "gallery": [],
+  "showCountdown": true,
+  "showRsvp": true,
+  "showGallery": true
+}

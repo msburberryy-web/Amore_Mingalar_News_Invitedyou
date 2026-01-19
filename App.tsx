@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { WeddingData, INITIAL_DATA, Language } from './types';
-import { Volume2, VolumeX, Share2, Settings, Heart, ChevronDown } from 'lucide-react';
+import { Volume2, VolumeX, Share2, Settings, Heart, ChevronDown, Loader2 } from 'lucide-react';
 import EnvelopeOverlay, { KanoteOrnament } from './components/EnvelopeOverlay';
 import WeddingCardTemplate from './components/WeddingCardTemplate';
 import LanguageSwitch from './components/LanguageSwitch';
@@ -60,11 +60,8 @@ const ScrollReveal: React.FC<{ children: React.ReactNode; className?: string }> 
 };
 
 const App: React.FC = () => {
-  const [data, setData] = useState<WeddingData>(() => {
-    const embedded = (window as any).EMBEDDED_WEDDING_DATA;
-    return embedded || INITIAL_DATA;
-  });
-  
+  const [data, setData] = useState<WeddingData>(INITIAL_DATA);
+  const [isLoading, setIsLoading] = useState(true);
   const [lang, setLang] = useState<Language>('my');
   const [isPlaying, setIsPlaying] = useState(false);
   const [isOpened, setIsOpened] = useState(() => {
@@ -77,18 +74,50 @@ const App: React.FC = () => {
   const footerRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    const saved = localStorage.getItem('invitation_data');
-    if (saved && !(window as any).EMBEDDED_WEDDING_DATA) {
+    const loadData = async () => {
+      const params = new URLSearchParams(window.location.search);
+      const event = params.get('event');
+      
       try {
-        setData(JSON.parse(saved));
+        let finalData = { ...INITIAL_DATA };
+        
+        // 1. Try embedded data if present
+        if ((window as any).EMBEDDED_WEDDING_DATA) {
+          finalData = { ...finalData, ...(window as any).EMBEDDED_WEDDING_DATA };
+        } 
+        
+        // 2. Try URL event parameter (overrides everything)
+        if (event) {
+          const fileName = `wedding-data_${event.replace('.', '_')}.json`;
+          // Fetch relative to the current URL path to handle subpath hosting correctly
+          const response = await fetch(`./${fileName}`);
+          if (response.ok) {
+            const remoteData = await response.json();
+            finalData = { ...finalData, ...remoteData };
+          } else {
+             console.warn(`Event file not found: ${fileName}. Falling back to default.`);
+          }
+        } else {
+          // 3. Try local storage if no URL param
+          const saved = localStorage.getItem('invitation_data');
+          if (saved) {
+            finalData = { ...finalData, ...JSON.parse(saved) };
+          }
+        }
+        
+        setData(finalData);
       } catch (e) {
-        console.error("Failed to parse saved data");
+        console.error("Failed to load invitation data", e);
+      } finally {
+        setIsLoading(false);
       }
-    }
+    };
+
+    loadData();
   }, []);
 
   useEffect(() => {
-    if (data.musicUrl && isOpened) {
+    if (data.musicUrl && isOpened && !isLoading) {
       if (!audioRef.current) {
         audioRef.current = new Audio(data.musicUrl);
         audioRef.current.loop = true;
@@ -102,7 +131,7 @@ const App: React.FC = () => {
     return () => {
       if (audioRef.current) audioRef.current.pause();
     };
-  }, [data.musicUrl, isOpened, isPlaying]);
+  }, [data.musicUrl, isOpened, isPlaying, isLoading]);
 
   const toggleMusic = () => {
     if (!audioRef.current && data.musicUrl) {
@@ -147,6 +176,18 @@ const App: React.FC = () => {
     return days[day]?.[targetLang] || day;
   };
 
+  if (isLoading) {
+    return (
+      <div className="fixed inset-0 bg-[#fdfbf7] flex flex-col items-center justify-center z-[300]">
+        <div className="relative w-32 h-32 flex items-center justify-center">
+          <div className="absolute inset-0 border-2 border-wedding-gold/20 rounded-full animate-ping"></div>
+          <Loader2 className="text-wedding-gold animate-spin w-10 h-10" />
+        </div>
+        <p className="mt-8 text-wedding-gold font-serif italic tracking-widest animate-pulse">Loading Invitation...</p>
+      </div>
+    );
+  }
+
   if (view === 'rsvp') {
     return (
       <RsvpForm 
@@ -186,7 +227,6 @@ const App: React.FC = () => {
                 <WeddingCardTemplate className="w-full h-full">
                     <div className="w-full h-full flex flex-col justify-around items-center py-4 md:py-12 gap-y-6 md:gap-y-0 md:justify-between overflow-visible">
                         
-                        {/* 1. Header Names - Increased vertical gap and allowed overflow */}
                         <div className="w-full text-center overflow-visible">
                           <div className={`flex flex-col md:flex-row items-center justify-center gap-3 md:gap-8 text-wedding-gold mb-2 md:mb-6 overflow-visible ${lang === 'my' ? 'font-myanmar font-bold' : 'font-serif'}`}>
                               <ElegantName name={data.groomName[lang]} lang={lang} />
@@ -198,7 +238,6 @@ const App: React.FC = () => {
                           <div className="w-10 md:w-16 h-px bg-wedding-gold/20 mx-auto mt-2"></div>
                         </div>
 
-                        {/* 2. Main Title */}
                         <div className="flex flex-col items-center justify-center w-full px-4 md:px-20">
                           <h1 className={`text-wedding-gold text-lg xs:text-2xl md:text-4xl lg:text-5xl font-bold tracking-tight leading-tight text-center ${lang === 'my' ? 'font-myanmar font-extrabold' : 'font-serif italic'}`}>
                               {data.title[lang]}
@@ -206,14 +245,12 @@ const App: React.FC = () => {
                           <KanoteOrnament className="w-12 xs:w-16 md:w-32 lg:w-36 h-3 xs:h-6 md:h-12 lg:h-14 shrink-0 opacity-50 mt-1 md:mt-3" />
                         </div>
 
-                        {/* 3. Message */}
                         <div className="max-w-[280px] xs:max-w-[340px] md:max-w-4xl mx-auto px-4 md:px-24">
                             <p className={`text-[13px] xs:text-sm md:text-lg lg:text-xl leading-relaxed text-gray-500 italic font-medium opacity-95 text-center ${lang === 'my' ? 'font-myanmar leading-[1.8]' : 'font-serif'}`}>
                             {data.welcomeMessage[lang]}
                             </p>
                         </div>
 
-                        {/* 4. Details */}
                         <div className="border-t border-wedding-gold/10 pt-4 md:pt-8 w-full max-w-2xl lg:max-w-3xl px-2 md:px-12">
                             <div className="flex flex-col md:flex-row justify-between items-center gap-6 xs:gap-8 md:gap-10 text-center">
                                 <div className="flex flex-col items-center md:border-r border-gray-100 md:pr-10 w-full md:w-auto">
@@ -236,7 +273,6 @@ const App: React.FC = () => {
                             </div>
                         </div>
 
-                        {/* 5. RSVP Button */}
                         {data.showRsvp && (data.googleScriptUrl || data.googleFormUrl) && (
                             <div className="pt-2 md:pt-6">
                                 <button 

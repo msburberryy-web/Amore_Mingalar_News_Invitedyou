@@ -1,0 +1,45 @@
+{
+  "groomName": {
+    "en": "Groom Name",
+    "ja": "新郎名",
+    "my": "သတို့သားအမည်"
+  },
+  "brideName": {
+    "en": "Bride Name",
+    "ja": "新婦名",
+    "my": "သတို့သမီးအမည်"
+  },
+  "date": "2026-02-14T10:30:00",
+  "time": {
+    "en": "10:30 AM to 1:00 PM",
+    "ja": "午前10時30分から午後1時まで",
+    "my": "နံနက် (၁၀:၃၀) နာရီမှ (၁:၀၀) နာရီအထိ"
+  },
+  "day": "Saturday",
+  "location": {
+    "name": {
+      "en": "Venue Name",
+      "ja": "会場名",
+      "my": "နေရာအမည်"
+    },
+    "address": {
+      "en": "123 Wedding Street, Tokyo, Japan",
+      "ja": "東京都...",
+      "my": "တိုကျိုမြို့၊ ဂျပန်နိုင်ငံ"
+    },
+    "mapUrl": ""
+  },
+  "googleScriptUrl": "YOUR_GOOGLE_SCRIPT_WEB_APP_URL_HERE",
+  "images": {
+    "hero": "photos/template/cover.jpg",
+    "groom": "photos/template/groom.jpg",
+    "bride": "photos/template/bride.jpg"
+  },
+  "gallery": [
+    "photos/template/gallery1.jpg",
+    "photos/template/gallery2.jpg"
+  ],
+  "showCountdown": true,
+  "showRsvp": true,
+  "showGallery": true
+}

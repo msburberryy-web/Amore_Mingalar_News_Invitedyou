@@ -67,7 +67,7 @@
   "showGallery": true,
   "showProvider": true,
   "musicUrl": "https://ia800203.us.archive.org/21/items/BurmeseTraditionalMusic/BurmeseTraditionalMusic-SaungGauk-BurmeseHarp.mp3",
-  "googleScriptUrl": "https://script.google.com/macros/s/AKfycbw-fcIGfxFajTaEUeKc9KlsghkNhhsN14cdGxtD9Ain_CCR4GdQ6a4YWOhyT3DsQNsCRA/exec",
+  "googleScriptUrl": "",
   "schedule": [
     {
       "time": "17:30",
@@ -86,50 +86,9 @@
         "my": "မင်္ဂလာဧည့်ခံပွဲ စတင်ခြင်း"
       },
       "icon": "party"
-    },
-    {
-      "time": "18:30",
-      "title": {
-        "en": "Meal & Conversation",
-        "ja": "お食事歓談",
-        "my": "ဧည့်ခံကျွေးမွေးခြင်း"
-      },
-      "icon": "meal"
-    },
-    {
-      "time": "19:00",
-      "title": {
-        "en": "Photo Session",
-        "ja": "フォトラウンド",
-        "my": "အမှတ်တရဓာတ်ပုံရိုက်ကူးခြင်း"
-      },
-      "icon": "camera"
-    },
-    {
-      "time": "20:00",
-      "title": {
-        "en": "Conclusion & Send-off",
-        "ja": "お披楽喜・送賓",
-        "my": "ဧည့်ခံပွဲ ပြီးဆုံးခြင်း"
-      },
-      "icon": "reception"
     }
   ],
-  "faq": [
-    {
-      "question": {
-        "en": "Can I bring a +1?",
-        "ja": "同伴者を連れて行ってもいいですか？",
-        "my": "ဧည့်သည်အပို ခေါ်လာလို့ရပါသလား?"
-      },
-      "answer": {
-        "en": "We kindly ask that only those who received this invitation attend. If you are bringing a plus one, please register them in the RSVP form.",
-        "ja": "お席の都合上、ご招待申し上げた方のみのご出席をお願いしております。お連れ様がいらっしゃる場合は、RSVPフォームにてお知らせください。",
-        "my": "နေရာထိုင်ခင်း အခက်အခဲရှိပါသဖြင့် ဖိတ်ကြားထားသူများသာ တက်ရောက်ပေးပါရန် မေတ္တာရပ်ခံပါသည်။"
-      },
-      "icon": "users"
-    }
-  ],
+  "faq": [],
   "gallery": [],
   "images": {
     "hero": "https://images.unsplash.com/photo-1519741497674-611481863552",
