@@ -1,0 +1,59 @@
+{
+  "title": {
+    "en": "Wedding Invitation",
+    "ja": "結婚披露宴のご案内",
+    "my": "မင်္ဂလာဦးဆွမ်းကျွေး ဖိတ်ကြားလွှာ"
+  },
+  "coverTitle": {
+    "en": "Wedding Announcement",
+    "ja": "結婚のご報告",
+    "my": "မင်္ဂလာသတင်းလွှာ"
+  },
+  "welcomeMessage": {
+    "en": "We cordially invite you to join our Wedding Reception.",
+    "ja": "皆様にご臨席賜りたく ご案内申し上げます",
+    "my": "ကျွန်ုပ်တို့၏ မင်္ဂလာဦးဆွမ်းကျွေးပွဲသို့ ကြွရောက်ချီးမြှင့်ပေးပါရန် လေးစားစွာဖြင့် ဖိတ်ကြားအပ်ပါသည်။"
+  },
+  "groomName": {
+    "en": "ZAY AUNG AUNG HTAY",
+    "ja": "ゼイアウンアウンテー",
+    "my": "ဇေအောင်အောင်ဌေး"
+  },
+  "brideName": {
+    "en": "HNIN YEE MOE",
+    "ja": "ニンイーモー",
+    "my": "နှင်းရည်မိုး"
+  },
+  "date": "2026-04-18T10:30:00",
+  "rsvpDeadline": "2026-03-31",
+  "time": {
+    "en": "10:30 AM to 1:00 PM",
+    "ja": "午前10時30分から午後1時まで",
+    "my": "နံနက် (၁၀:၃၀) နာရီမှ (၁:၀၀) နာရီအထိ"
+  },
+  "day": "Saturday",
+  "location": {
+    "name": {
+      "en": "𝚃𝚑𝚎𝚛𝚊𝚟𝚊𝚍𝚊 𝙼𝚘𝚗𝚊𝚜𝚝𝚎𝚛𝚢 ( 𝚆𝚊𝚔𝚘𝚜𝚑𝚒 )",
+      "ja": "テーラワーダ・パリヤッティ僧院（ミャンマー上座部仏教僧院）",
+      "my": "𝚆𝚊𝚔𝚘𝚜𝚑𝚒 မြန်မာဘုန်းကြီးကျောင်း"
+    },
+    "address": {
+      "en": "2 Chome-27-18 Niikura, Wako, Saitama 351-0115",
+      "ja": "埼玉県和光市新倉２−２７−１８",
+      "my": "2 Chome-27-18 Niikura, Wako, Saitama 351-0115"
+    },
+    "mapUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3236.181391797309!2d139.62001697637282!3d35.795479972550645!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6018eb8098d1e8d9%3A0x499148df5523bc90!2zVEhFUkFWQURBIE1PTkFTVEVSWSAoV2Frb3NoaSDhgJnhgLzhgJThgLrhgJnhgKzhgJjhgK_hgJThgLrhgLjhgIDhgLzhgK7hgLjhgIDhgLvhgLHhgKzhgIThgLrhgLgp!5e0!3m2!1sen!2sjp!4v1768835219076!5m2!1sen!2sjp"
+  },
+  "googleScriptUrl": "https://script.google.com/macros/s/AKfycbxOLpaWFYM9ibLYauA2p7hsfGtj-g-A971bILqQ8Dpf2_NiTur4_laC1VvTeONIRCjPxw/exec",
+  "images": {
+    "groom": "photos/[event-folder]/groom.jpg",
+    "bride": "photos/[event-folder]/bride.jpg"
+  },
+  "gallery": [
+    "/photos/[event-folder]/gallery1.jpg"
+  ],
+  "showCountdown": true,
+  "showRsvp": true,
+  "showGallery": true
+}
