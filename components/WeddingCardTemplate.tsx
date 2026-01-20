@@ -7,86 +7,109 @@ interface Props {
 
 const WeddingCardTemplate: React.FC<Props> = ({ className = "", children }) => {
   return (
-    <div className={`relative ${className} flex items-center justify-center overflow-visible`}>
+    <div className={`relative w-full min-h-[100dvh] ${className}`}>
       {/* 
-          Burmese Parabaik SVG Shape:
-          - Uses a background SVG that preserves the traditional bracket silhouette.
-          - The container itself has padding and overflow management.
+        The Fixed Frame: 
+        This remains static in the viewport, creating the "Traditional Burmese Scroll" 
+        look that frames all scrolling content.
       */}
-      <div className="absolute inset-0 z-0">
+      <div className="fixed inset-0 z-0 pointer-events-none">
         <svg
-          viewBox="0 0 1000 600"
-          className="w-full h-full filter drop-shadow-[0_25px_60px_rgba(0,0,0,0.15)]"
+          viewBox="0 0 1000 1000"
+          className="w-full h-full"
           xmlns="http://www.w3.org/2000/svg"
-          preserveAspectRatio="none"
+          preserveAspectRatio="none" 
         >
           <defs>
-            <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <linearGradient id="goldGradFull" x1="0%" y1="0%" x2="100%" y2="100%">
               <stop offset="0%" stopColor="#bf953f" />
               <stop offset="50%" stopColor="#fcf6ba" />
               <stop offset="100%" stopColor="#aa771c" />
             </linearGradient>
+            
+            <filter id="parabeikShadowFull" x="-20%" y="-20%" width="140%" height="140%">
+              <feGaussianBlur in="SourceAlpha" stdDeviation="8" />
+              <feOffset dx="0" dy="4" result="offsetblur" />
+              <feComponentTransfer>
+                <feFuncA type="linear" slope="0.1" />
+              </feComponentTransfer>
+              <feMerge>
+                <feMergeNode />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+
+            {/* Subtle Rice Paper Texture */}
+            <filter id="paperGrain">
+              <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="5" result="noise" />
+              <feDiffuseLighting in="noise" lightingColor="#fff" surfaceScale="2">
+                <feDistantLight azimuth="45" elevation="60" />
+              </feDiffuseLighting>
+            </filter>
           </defs>
           
-          {/* The Parabaik Bracket Silhouette */}
+          {/* Main Paper Body - Fills entire screen */}
           <path
-            d="M 100,0 
-               L 900,0 
-               Q 950,0 950,50 
-               L 950,150 
-               Q 950,200 1000,200 
-               L 1000,400 
-               Q 950,400 950,450 
-               L 950,550 
-               Q 950,600 900,600 
-               L 100,600 
-               Q 50,600 50,550 
-               L 50,450 
-               Q 50,400 0,400 
-               L 0,200 
-               Q 50,200 50,150 
-               L 50,50 
-               Q 50,0 100,0 
+            d="M 50,0 
+               L 950,0 
+               Q 950,0 950,30 
+               L 950,475 
+               Q 950,500 1000,500 
+               L 1000,500 
+               Q 950,500 950,525 
+               L 950,970 
+               Q 950,1000 920,1000 
+               L 80,1000 
+               Q 50,1000 50,970 
+               L 50,525 
+               Q 50,500 0,500 
+               L 0,500 
+               Q 50,500 50,475 
+               L 50,30 
+               Q 50,0 80,0 
                Z"
             fill="white"
-            stroke="url(#goldGrad)"
-            strokeWidth="3"
+            stroke="url(#goldGradFull)"
+            strokeWidth="1.5"
+            vectorEffect="non-scaling-stroke"
+            filter="url(#parabeikShadowFull)"
           />
-          
-          {/* Inner Decorative Line - Thinner for elegance */}
+
+          {/* Inner Decorative Accent Line */}
           <path
-            d="M 115,15 
-               L 885,15 
-               Q 935,15 935,65 
-               L 935,165 
-               Q 935,215 985,215 
-               L 985,385 
-               Q 935,385 935,435 
-               L 935,535 
-               Q 935,585 885,585 
-               L 115,585 
-               Q 65,585 65,535 
-               L 65,435 
-               Q 65,385 15,385 
-               L 15,215 
-               Q 65,215 65,165 
-               L 65,65 
-               Q 65,15 115,15 
+            d="M 70,15 
+               L 930,15 
+               Q 930,15 930,45 
+               L 930,480 
+               Q 930,500 970,500 
+               L 970,500 
+               Q 930,500 930,520 
+               L 930,955 
+               Q 930,985 900,985 
+               L 100,985 
+               Q 70,985 70,955 
+               L 70,520 
+               Q 70,500 30,500 
+               L 30,500 
+               Q 70,500 70,480 
+               L 70,45 
+               Q 70,15 100,15 
                Z"
             fill="none"
-            stroke="url(#goldGrad)"
-            strokeWidth="0.8"
-            opacity="0.15"
+            stroke="url(#goldGradFull)"
+            strokeWidth="0.5"
+            opacity="0.3"
+            vectorEffect="non-scaling-stroke"
           />
         </svg>
       </div>
 
       {/* 
-          Content Area:
-          - Optimized p-4 on small mobile to ensure no cutoffs.
-          - justify-between ensures content fills the available height evenly.
+        Scrollable Content Layer:
+        All content sections pass through here. 
+        Horizontal padding ensures text doesn't touch the golden edges.
       */}
-      <div className="relative z-10 w-full h-full flex flex-col items-center justify-between p-4 xs:p-8 md:p-16 overflow-y-auto no-scrollbar">
+      <div className="relative z-10 w-full px-12 xs:px-14 md:px-48 pb-20">
         {children}
       </div>
     </div>

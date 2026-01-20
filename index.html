@@ -84,6 +84,7 @@
         background: linear-gradient(90deg, #bf953f, #fcf6ba, #b38728, #fcf6ba, #aa771c);
         background-size: 200% auto;
         -webkit-background-clip: text;
+        background-clip: text; /* Standard property for compatibility */
         -webkit-text-fill-color: transparent;
         animation: shimmer 5s linear infinite;
       }
@@ -113,10 +114,10 @@
   }
 }
 </script>
-<link rel="stylesheet" href="/index.css">
+<link rel="stylesheet" href="./index.css">
 </head>
   <body>
     <div id="root"></div>
-    <script type="module" src="/index.tsx"></script>
+    <script type="module" src="./index.tsx"></script>
   </body>
 </html>

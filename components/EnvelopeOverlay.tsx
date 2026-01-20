@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { WeddingData, Language } from '../types';
 import WeddingCardTemplate from './WeddingCardTemplate';
+import { Heart } from 'lucide-react';
 
 interface Props {
   data: WeddingData;
@@ -27,7 +28,6 @@ const EnvelopeOverlay: React.FC<Props> = ({ data, lang, onOpen }) => {
 
   const startSequence = () => {
     if (stage !== 'closed') return;
-    // Changed from 2414 (Birds) to 2019 (Elegant Chime/Reveal)
     new Audio('https://assets.mixkit.co/active_storage/sfx/2019/2019-preview.mp3').play().catch(() => {});
     setStage('opening');
     setTimeout(() => setStage('unrolling'), 800);
@@ -42,7 +42,6 @@ const EnvelopeOverlay: React.FC<Props> = ({ data, lang, onOpen }) => {
   const isOpening = stage === 'opening' || stage === 'unrolling';
   const isUnrolling = stage === 'unrolling';
 
-  // Defensive fallback for missing coverTitle
   const coverTitleText = data.coverTitle?.[lang] || data.title?.[lang] || 'Wedding Invitation';
 
   return (
@@ -50,25 +49,28 @@ const EnvelopeOverlay: React.FC<Props> = ({ data, lang, onOpen }) => {
       className={`fixed inset-0 z-[200] flex items-center justify-center p-4 transition-all duration-1000 ${stage === 'unrolling' ? 'bg-white' : 'bg-[#fdfbf7]'}`}
       onClick={startSequence}
     >
-      <div className="absolute inset-0 opacity-[0.03] bg-[url('https://www.transparenttextures.com/patterns/handmade-paper.png')]"></div>
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_transparent_0%,_rgba(197,160,89,0.05)_100%)]"></div>
-
-      <div className="relative w-full max-w-[950px] aspect-[1.8/1] md:aspect-[2.5/1] perspective-2000 cursor-pointer overflow-visible">
+      <div className="absolute inset-0 opacity-[0.03] bg-[url('https://www.transparenttextures.com/patterns/handmade-paper.png')] pointer-events-none"></div>
+      
+      <div className="relative w-full max-w-[700px] aspect-[1/1.4] xs:aspect-[1/1.2] md:aspect-[1.5/1] perspective-2000 cursor-pointer overflow-visible">
         <div className={`relative w-full h-full flex transition-all duration-700 bg-transparent ${isOpening ? 'opacity-0 scale-90' : 'opacity-100 scale-100'}`}>
           <WeddingCardTemplate className="w-full h-full">
-            <div className="flex-1 flex flex-col items-center justify-center w-full">
-              {/* Added top ornament for balance */}
-              <KanoteOrnament className="w-16 md:w-32 opacity-20 mb-4 md:mb-8" />
+            <div className="flex-1 flex flex-col items-center justify-center w-full px-4 md:px-12 text-center max-w-[95%] overflow-visible">
+              <KanoteOrnament className="w-10 md:w-32 opacity-20 mb-10 md:mb-20" />
               
-              <h1 className={`text-wedding-gold text-2xl md:text-7xl font-bold tracking-[0.05em] text-center px-4 mb-4 drop-shadow-sm ${lang === 'my' ? 'font-myanmar' : 'font-serif italic'}`}>
+              <h1 className={`text-wedding-gold text-xl xs:text-2xl md:text-6xl font-bold mb-10 md:mb-20 drop-shadow-sm whitespace-nowrap leading-tight ${lang === 'my' ? 'font-myanmar tracking-normal' : 'font-serif italic tracking-wide'}`}>
                 {coverTitleText}
               </h1>
 
-              {/* Bottom mirror ornament */}
-              <KanoteOrnament className="w-16 md:w-32 opacity-20 mt-4 md:mt-8 rotate-180" />
+              <div className="flex items-center justify-center gap-6 text-wedding-gold/60 font-serif italic text-xs md:text-4xl w-full px-6 whitespace-nowrap overflow-visible">
+                 <span className="shrink-0">{data.groomName.en}</span>
+                 <Heart size={20} className="fill-current opacity-40 shrink-0 md:w-10 md:h-10" />
+                 <span className="shrink-0">{data.brideName.en}</span>
+              </div>
+
+              <KanoteOrnament className="w-10 md:w-32 opacity-20 mt-10 md:mt-20 rotate-180" />
             </div>
 
-            <p className="text-wedding-gold/40 text-[10px] md:text-xs uppercase tracking-[1em] md:tracking-[1.5em] pb-4 md:pb-8 animate-pulse font-bold">
+            <p className={`text-wedding-gold/40 text-[9px] md:text-base uppercase pb-8 md:pb-20 animate-pulse font-bold tracking-[0.4em] md:tracking-[1.5em] ${lang === 'my' ? 'font-myanmar' : ''}`}>
               {lang === 'my' ? 'ဖွင့်ရန်နှိပ်ပါ' : 'Tap to Open'}
             </p>
           </WeddingCardTemplate>

@@ -100,6 +100,7 @@ export interface WeddingData {
     bride: string;
   };
   gallery: string[];
+  footerLogo?: string;
   theme: {
     primary: string;
     text: string;

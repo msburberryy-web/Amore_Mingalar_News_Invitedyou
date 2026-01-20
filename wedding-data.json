@@ -15,105 +15,64 @@
     "my": "ကျွန်ုပ်တို့၏ မင်္ဂလာဦးဆွမ်းကျွေးပွဲသို့ ကြွရောက်ချီးမြှင့်ပေးပါရန် လေးစားစွာဖြင့် ဖိတ်ကြားအပ်ပါသည်။"
   },
   "groomName": {
-    "en": "Zin",
-    "ja": "ジン",
-    "my": "ဇင်"
+    "en": "Groom Name",
+    "ja": "新郎名",
+    "my": "သတို့သားအမည်"
   },
-  "academicGroom": "",
   "brideName": {
-    "en": "Zue",
-    "ja": "ズー",
-    "my": "ဇူး"
+    "en": "Bride Name",
+    "ja": "新婦名",
+    "my": "သတို့သမီးအမည်"
   },
-  "academicBride": "",
-  "parentsName": "",
-  "date": "2026-02-14T17:00:00",
+  "date": "2026-02-14T10:30:00",
   "time": {
-    "en": "5:30 PM to 8:00 PM",
-    "ja": "午後5時30分から午後8時まで",
-    "my": "ညနေ (၅:၃၀) နာရီမှ (၈:၀၀) နာရီအထိ"
+    "en": "10:30 AM to 1:00 PM",
+    "ja": "午前10時30分から午後1時まで",
+    "my": "နံနက် (၁၀:၃၀) နာရီမှ (၁:၀၀) နာရီအထိ"
   },
   "day": "Saturday",
-  "showCountdown": true,
-  "rsvpDeadline": "2026-01-20",
   "location": {
     "name": {
-      "en": "Batur Tokyo",
-      "ja": "バトゥール東京",
-      "my": "Batur Tokyo"
+      "en": "Venue Name",
+      "ja": "会場名",
+      "my": "နေရာအမည်"
     },
     "address": {
-      "en": "1F KDX Higashi-Shinjuku Building, 2-4-10 Kabukicho, Shinjuku-ku, Tokyo 160-0021",
-      "ja": "〒160-0021 東京都新宿区歌舞伎町2-4-10 KDX東新宿ビル1F",
-      "my": "1F KDX Higashi-Shinjuku Building, 2-4-10 Kabukicho, Shinjuku-ku, Tokyo 160-0021"
+      "en": "123 Wedding Street, Tokyo, Japan",
+      "ja": "東京都...",
+      "my": "တိုကျိုမြို့၊ ဂျပန်နိုင်ငံ"
     },
-    "mapUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3240.161296291768!2d139.70624809999998!3d35.697648199999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188cd8b5b7ac67%3A0x9ce2f5afc23c6d3a!2sWedding%26Party%20BATUR%20Tokyo!5e0!3m2!1sen!2sjp!4v1766542348811!5m2!1sen!2sjp"
+    "mapUrl": ""
   },
-  "message": {
-    "en": "We invite you to share in our joy as we exchange marriage vows.",
-    "ja": "このたび 私たちは結婚することになりました\n皆様に見守られながら 新しい人生の第一歩を踏み出したいと存じます",
-    "my": "ကျွန်ုပ်တို့၏ မင်္ဂလာပွဲသို့ ကြွရောက်ချီးမြှင့်ပါရန် ဖိတ်ကြားအပ်ပါသည်။"
-  },
-  "fontSize": 18,
-  "textColor": "#4A4A4A",
-  "accentColor": "#C5A059",
-  "fontFamily": "\"Padauk\", serif",
-  "archColor": "#C5A059",
-  "showGlitter": false,
-  "photoFilter": "none",
-  "layoutMode": "modern",
+  "showCountdown": true,
   "showRsvp": true,
-  "showSchedule": true,
   "showGallery": true,
+  "showSchedule": true,
   "showProvider": true,
   "musicUrl": "https://ia800203.us.archive.org/21/items/BurmeseTraditionalMusic/BurmeseTraditionalMusic-SaungGauk-BurmeseHarp.mp3",
   "googleScriptUrl": "",
-  "schedule": [
-    {
-      "time": "17:30",
-      "title": {
-        "en": "Reception",
-        "ja": "受付開始",
-        "my": "ဧည့်ခံခြင်း"
-      },
-      "icon": "reception"
-    },
-    {
-      "time": "18:00",
-      "title": {
-        "en": "Grand Entrance",
-        "ja": "開宴・新郎新婦入場",
-        "my": "မင်္ဂလာဧည့်ခံပွဲ စတင်ခြင်း"
-      },
-      "icon": "party"
-    }
-  ],
-  "faq": [],
-  "gallery": [],
   "images": {
-    "hero": "https://images.unsplash.com/photo-1519741497674-611481863552",
-    "groom": "https://images.unsplash.com/photo-1591604466107-ec97de577aff",
-    "bride": "https://images.unsplash.com/photo-1542037104857-ffbb0b9155fb"
+    "hero": "photos/[event-folder]/cover.jpg",
+    "groom": "photos/[event-folder]/groom.jpg",
+    "bride": "photos/[event-folder]/bride.jpg"
   },
-  "theme": {
-    "primary": "#C5A059",
-    "text": "#4A4A4A",
-    "backgroundTint": "#F5F0E6"
-  },
-  "fonts": {
-    "en": "\"Cormorant Garamond\", serif",
-    "ja": "serif",
-    "my": "\"Padauk\", serif"
-  },
-  "visuals": {
-    "enableAnimations": true,
-    "enableEnvelope": true
-  },
+  "gallery": [
+    "photos/[event-folder]/gallery1.jpg",
+    "photos/[event-folder]/gallery2.jpg"
+  ],
+  "footerLogo": "photos/[event-folder]/logo.png",
+  "schedule": [],
+  "faq": [],
   "profile": {
     "show": true,
     "showDetails": false,
     "showQa": false,
     "details": [],
     "qa": []
+  },
+  "theme": {
+    "primary": "#C5A059",
+    "text": "#4A4A4A",
+    "backgroundTint": "#F5F0E6"
   }
 }
