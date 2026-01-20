@@ -42,9 +42,9 @@
       "ja": "埼玉県和光市新倉２−２７−１８",
       "my": "2 Chome-27-18 Niikura, Wako, Saitama 351-0115"
     },
-    "mapUrl": "Addhere"
+    "mapUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3236.181391797309!2d139.62001697637282!3d35.795479972550645!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6018eb8098d1e8d9%3A0x499148df5523bc90!2zVEhFUkFWQURBIE1PTkFTVEVSWSAoV2Frb3NoaSDhgJnhgLzhgJThgLrhgJnhgKzhgJjhgK_hgJThgLrhgLjhgIDhgLzhgK7hgLjhgIDhgLvhgLHhgKzhgIThgLrhgLgp!5e0!3m2!1sen!2sjp!4v1768835219076!5m2!1sen!2sjp"
   },
-  "googleScriptUrl": "Addhere",
+  "googleScriptUrl": "https://script.google.com/macros/s/AKfycbxbvFvpLkyBbInk59ZAW0xGK84EzpIWnYKszt-OCd_dpCJujgTL1K7TmP6qv2ERJBFb/exec",
   "images": {
     "groom": "photos/[event-folder]/groom.jpg",
     "bride": "photos/[event-folder]/bride.jpg"
