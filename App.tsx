@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { WeddingData, INITIAL_DATA, Language } from './types';
-import { Volume2, VolumeX, Settings, Heart, ChevronDown, Loader2, MapPin, Map as MapIcon, ExternalLink } from 'lucide-react';
+import { Volume2, VolumeX, Settings, Heart, ChevronDown, Loader2, MapPin, Map as MapIcon, ExternalLink, Image as ImageIcon } from 'lucide-react';
 import EnvelopeOverlay, { KanoteOrnament } from './components/EnvelopeOverlay';
 import WeddingCardTemplate from './components/WeddingCardTemplate';
 import LanguageSwitch from './components/LanguageSwitch';
@@ -178,9 +178,9 @@ const App: React.FC = () => {
   const handleUpdate = (newData: WeddingData) => setData(newData);
 
   const labels = {
-    en: { schedule: 'SCHEDULE', location: 'LOCATION', rsvp: 'RSVP', countdown: 'COUNTDOWN', days: 'Days', hours: 'Hours', mins: 'Mins', secs: 'Secs' },
-    ja: { schedule: '挙式・披露宴', location: 'アクセス', rsvp: 'ご出欠', countdown: 'カウントダウン', days: '日', hours: '時間', mins: '分', secs: '秒' },
-    my: { schedule: 'အစီအစဉ်', location: 'တည်နေရာ', rsvp: 'တက်ရောက်ရန်', countdown: 'ကျန်ရှိသောအချိန်', days: 'ရက်', hours: 'နာရီ', mins: 'မိနစ်', secs: 'စက္ကန့်' }
+    en: { schedule: 'SCHEDULE', location: 'LOCATION', rsvp: 'RSVP', countdown: 'COUNTDOWN', gallery: 'GALLERY', days: 'Days', hours: 'Hours', mins: 'Mins', secs: 'Secs' },
+    ja: { schedule: '挙式・披露宴', location: 'アクセス', rsvp: 'ご出欠', countdown: 'カウントダウン', gallery: 'フォトギャラリー', days: '日', hours: '時間', mins: '分', secs: '秒' },
+    my: { schedule: 'အစီအစဉ်', location: 'တည်နေရာ', rsvp: 'တက်ရောက်ရန်', countdown: 'အချိန်ကျန်', gallery: 'ဓါတ်ပုံများ', days: 'ရက်', hours: 'နာရီ', mins: 'မိနစ်', secs: 'စက္ကန့်' }
   }[lang];
 
   if (isLoading) {
@@ -273,6 +273,30 @@ const App: React.FC = () => {
 
           {/* Profile Section */}
           <ProfileSection data={data} language={lang} fixPath={fixAssetPath} />
+
+          {/* Gallery Section */}
+          {data.showGallery && data.gallery && data.gallery.length > 0 && (
+            <section className="py-32 w-full max-w-6xl px-6">
+              <ScrollReveal>
+                <h2 className="text-3xl md:text-5xl font-serif text-wedding-gold text-center mb-20 tracking-widest uppercase">{labels.gallery}</h2>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+                  {data.gallery.map((img, idx) => (
+                    <div 
+                      key={idx} 
+                      className="aspect-[4/5] overflow-hidden rounded-3xl border-[6px] border-wedding-gold/10 hover:border-wedding-gold/40 transition-all duration-1000 shadow-xl bg-wedding-sand/5 group"
+                    >
+                      <img 
+                        src={fixAssetPath(img)} 
+                        alt={`Gallery ${idx + 1}`} 
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-[2s]"
+                        loading="lazy"
+                      />
+                    </div>
+                  ))}
+                </div>
+              </ScrollReveal>
+            </section>
+          )}
 
           {/* Schedule Section */}
           {data.showSchedule && data.schedule.length > 0 && (

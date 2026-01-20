@@ -54,25 +54,29 @@ const EnvelopeOverlay: React.FC<Props> = ({ data, lang, onOpen }) => {
       <div className="relative w-full max-w-[700px] aspect-[1/1.4] xs:aspect-[1/1.2] md:aspect-[1.5/1] perspective-2000 cursor-pointer overflow-visible">
         <div className={`relative w-full h-full flex transition-all duration-700 bg-transparent ${isOpening ? 'opacity-0 scale-90' : 'opacity-100 scale-100'}`}>
           <WeddingCardTemplate className="w-full h-full">
-            <div className="flex-1 flex flex-col items-center justify-center w-full px-4 md:px-12 text-center max-w-[95%] overflow-visible">
-              <KanoteOrnament className="w-10 md:w-32 opacity-20 mb-10 md:mb-20" />
-              
-              <h1 className={`text-wedding-gold text-xl xs:text-2xl md:text-6xl font-bold mb-10 md:mb-20 drop-shadow-sm whitespace-nowrap leading-tight ${lang === 'my' ? 'font-myanmar tracking-normal' : 'font-serif italic tracking-wide'}`}>
-                {coverTitleText}
-              </h1>
+            <div className="flex flex-col items-center justify-between h-full w-full pt-10 pb-4 md:pb-10">
+              <div className="flex-1 flex flex-col items-center justify-center w-full px-4 md:px-12 text-center max-w-[95%] overflow-visible">
+                <KanoteOrnament className="w-10 md:w-32 opacity-20 mb-8 md:mb-16" />
+                
+                <h1 className={`text-wedding-gold text-xl xs:text-2xl md:text-5xl font-bold mb-8 md:mb-16 drop-shadow-sm whitespace-nowrap leading-tight ${lang === 'my' ? 'font-myanmar tracking-normal' : 'font-serif italic tracking-wide'}`}>
+                  {coverTitleText}
+                </h1>
 
-              <div className="flex items-center justify-center gap-6 text-wedding-gold/60 font-serif italic text-xs md:text-4xl w-full px-6 whitespace-nowrap overflow-visible">
-                 <span className="shrink-0">{data.groomName.en}</span>
-                 <Heart size={20} className="fill-current opacity-40 shrink-0 md:w-10 md:h-10" />
-                 <span className="shrink-0">{data.brideName.en}</span>
+                <div className="flex items-center justify-center gap-4 md:gap-8 text-wedding-gold/60 font-serif italic text-xs md:text-3xl w-full px-6 whitespace-nowrap overflow-visible">
+                  <span className="shrink-0">{data.groomName.en}</span>
+                  <Heart size={16} className="fill-current opacity-40 shrink-0 md:w-8 md:h-8" />
+                  <span className="shrink-0">{data.brideName.en}</span>
+                </div>
+
+                <KanoteOrnament className="w-10 md:w-32 opacity-20 mt-8 md:mt-16 rotate-180" />
               </div>
 
-              <KanoteOrnament className="w-10 md:w-32 opacity-20 mt-10 md:mt-20 rotate-180" />
+              <div className="w-full text-center pb-6 md:pb-10">
+                <p className={`text-wedding-gold/40 text-[10px] md:text-base uppercase animate-pulse font-bold tracking-[0.4em] md:tracking-[1.2em] w-full block ${lang === 'my' ? 'font-myanmar' : ''}`}>
+                  {lang === 'my' ? 'ဖွင့်ရန်နှိပ်ပါ' : 'Tap to Open'}
+                </p>
+              </div>
             </div>
-
-            <p className={`text-wedding-gold/40 text-[9px] md:text-base uppercase pb-8 md:pb-20 animate-pulse font-bold tracking-[0.4em] md:tracking-[1.5em] ${lang === 'my' ? 'font-myanmar' : ''}`}>
-              {lang === 'my' ? 'ဖွင့်ရန်နှိပ်ပါ' : 'Tap to Open'}
-            </p>
           </WeddingCardTemplate>
         </div>
 
