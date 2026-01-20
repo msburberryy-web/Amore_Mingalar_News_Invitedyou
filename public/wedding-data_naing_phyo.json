@@ -1,0 +1,58 @@
+{
+  "title": {
+    "en": "Wedding Invitation",
+    "ja": "結婚披露宴のご案内",
+    "my": "မင်္ဂလာဦးဆွမ်းကျွေး ဖိတ်ကြားလွှာ"
+  },
+  "coverTitle": {
+    "en": "Wedding Announcement",
+    "ja": "結婚のご報告",
+    "my": "မင်္ဂလာသတင်းလွှာ"
+  },
+  "welcomeMessage": {
+    "en": "We cordially invite you to join our Wedding Reception.",
+    "ja": "皆様にご臨席賜りたく ご案内申し上げます",
+    "my": "ကျွန်ုပ်တို့၏ မင်္ဂလာဦးဆွမ်းကျွေးပွဲသို့ ကြွရောက်ချီးမြှင့်ပေးပါရန် လေးစားစွာဖြင့် ဖိတ်ကြားအပ်ပါသည်။"
+  },
+  "groomName": {
+    "en": "Naing Aung Win",
+    "ja": "ナインアウンウィン",
+    "my": "နိုင်အောင်ဝင်း"
+  },
+  "brideName": {
+    "en": "Pyae Pyae Phyo",
+    "ja": "ピェーピェーピョー",
+    "my": "ပြည့်ပြည့်ဖြိုး"
+  },
+  "date": "2026-03-07T10:30:00",
+  "time": {
+    "en": "10:30 AM to 1:00 PM",
+    "ja": "午前10時30分から午後1時まで",
+    "my": "နံနက် (၁၀:၃၀) နာရီမှ (၁:၀၀) နာရီအထိ"
+  },
+  "day": "Saturday",
+  "location": {
+    "name": {
+      "en": "𝚃𝚑𝚎𝚛𝚊𝚟𝚊𝚍𝚊 𝙼𝚘𝚗𝚊𝚜𝚝𝚎𝚛𝚢 ( 𝚆𝚊𝚔𝚘𝚜𝚑𝚒 )",
+      "ja": "テーラワーダ・パリヤッティ僧院（ミャンマー上座部仏教僧院）",
+      "my": "𝚆𝚊𝚔𝚘𝚜𝚑𝚒 မြန်မာဘုန်းကြီးကျောင်း"
+    },
+    "address": {
+      "en": "2 Chome-27-18 Niikura, Wako, Saitama 351-0115",
+      "ja": "埼玉県和光市新倉２−２７−１８",
+      "my": "2 Chome-27-18 Niikura, Wako, Saitama 351-0115"
+    },
+    "mapUrl": "Addhere"
+  },
+  "googleScriptUrl": "Addhere",
+  "images": {
+    "groom": "photos/[event-folder]/groom.jpg",
+    "bride": "photos/[event-folder]/bride.jpg"
+  },
+  "gallery": [
+    "photos/[event-folder]/cover.jpg"
+  ],
+  "showCountdown": true,
+  "showRsvp": true,
+  "showGallery": true
+}
