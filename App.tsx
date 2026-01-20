@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { WeddingData, INITIAL_DATA, Language } from './types';
-import { Volume2, VolumeX, Settings, Heart, ChevronDown, Loader2, MapPin, Map as MapIcon, ExternalLink, Image as ImageIcon } from 'lucide-react';
+import { Volume2, VolumeX, Settings, Heart, ChevronDown, Loader2, MapPin, Map as MapIcon, ExternalLink, Image as ImageIcon, Calendar } from 'lucide-react';
 import EnvelopeOverlay, { KanoteOrnament } from './components/EnvelopeOverlay';
 import WeddingCardTemplate from './components/WeddingCardTemplate';
 import LanguageSwitch from './components/LanguageSwitch';
@@ -178,9 +178,9 @@ const App: React.FC = () => {
   const handleUpdate = (newData: WeddingData) => setData(newData);
 
   const labels = {
-    en: { schedule: 'SCHEDULE', location: 'LOCATION', rsvp: 'RSVP', countdown: 'COUNTDOWN', gallery: 'GALLERY', days: 'Days', hours: 'Hours', mins: 'Mins', secs: 'Secs' },
-    ja: { schedule: '挙式・披露宴', location: 'アクセス', rsvp: 'ご出欠', countdown: 'カウントダウン', gallery: 'フォトギャラリー', days: '日', hours: '時間', mins: '分', secs: '秒' },
-    my: { schedule: 'အစီအစဉ်', location: 'တည်နေရာ', rsvp: 'တက်ရောက်ရန်', countdown: 'အချိန်ကျန်', gallery: 'ဓါတ်ပုံများ', days: 'ရက်', hours: 'နာရီ', mins: 'မိနစ်', secs: 'စက္ကန့်' }
+    en: { schedule: 'SCHEDULE', location: 'LOCATION', rsvp: 'RSVP', rsvpDeadline: 'RSVP by', countdown: 'COUNTDOWN', gallery: 'GALLERY', days: 'Days', hours: 'Hours', mins: 'Mins', secs: 'Secs' },
+    ja: { schedule: '挙式・披露宴', location: 'アクセス', rsvp: 'ご出欠', rsvpDeadline: '出欠回答期限', countdown: 'カウントダウン', gallery: 'フォトギャラリー', days: '日', hours: '時間', mins: '分', secs: '秒' },
+    my: { schedule: 'အစီအစဉ်', location: 'တည်နေရာ', rsvp: 'တက်ရောက်ရန်', rsvpDeadline: 'အကြောင်းပြန်ရန် နောက်ဆုံးရက်', countdown: 'ကျန်ရှိသောအချိန်', gallery: 'ဓါတ်ပုံများ', days: 'ရက်', hours: 'နာရီ', mins: 'မိနစ်', secs: 'စက္ကန့်' }
   }[lang];
 
   if (isLoading) {
@@ -336,15 +336,6 @@ const App: React.FC = () => {
                   ></iframe>
                 </div>
               )}
-
-              <a 
-                href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(data.location.address.en)}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 bg-wedding-gold text-white px-10 py-4 rounded-full font-bold hover:bg-wedding-text transition-colors shadow-lg text-lg uppercase tracking-widest"
-              >
-                Open in Maps <ExternalLink size={20} />
-              </a>
             </ScrollReveal>
           </section>
 
@@ -373,6 +364,14 @@ const App: React.FC = () => {
                 <div className="flex items-center justify-center mb-12">
                   <GoldHeart className="w-20 h-20 opacity-40 animate-pulse" />
                 </div>
+                
+                {data.rsvpDeadline && (
+                  <div className="mb-6 flex items-center justify-center gap-2 text-wedding-gold font-serif italic text-lg opacity-80">
+                    <Calendar size={18} />
+                    <span>{labels.rsvpDeadline}: {data.rsvpDeadline}</span>
+                  </div>
+                )}
+
                 <button 
                   onClick={() => setShowRsvp(true)}
                   className="bg-wedding-text text-white px-10 md:px-20 py-6 md:py-8 rounded-full font-serif text-xl md:text-4xl shadow-2xl hover:bg-wedding-gold transition-all transform hover:-translate-y-2 active:scale-95 uppercase tracking-[0.2em]"

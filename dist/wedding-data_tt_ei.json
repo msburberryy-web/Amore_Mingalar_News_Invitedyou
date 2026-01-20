@@ -1,0 +1,65 @@
+{
+  "title": {
+    "en": "Wedding Invitation",
+    "ja": "結婚披露宴のご案内",
+    "my": "မင်္ဂလာဦးဆွမ်းကျွေး ဖိတ်ကြားလွှာ"
+  },
+  "coverTitle": {
+    "en": "Wedding Announcement",
+    "ja": "結婚のご報告",
+    "my": "မင်္ဂလာသတင်းလွှာ"
+  },
+  "welcomeMessage": {
+    "en": "We cordially invite you to join our Wedding Reception.",
+    "ja": "皆様にご臨席賜りたく ご案内申し上げます",
+    "my": "ကျွန်ုပ်တို့၏ မင်္ဂလာဦးဆွမ်းကျွေးပွဲသို့ ကြွရောက်ချီးမြှင့်ပေးပါရန် လေးစားစွာဖြင့် ဖိတ်ကြားအပ်ပါသည်။"
+  },
+  "groomName": {
+    "en": "TT",
+    "ja": "ティティ",
+    "my": "တင့်ထူးအောင်"
+  },
+  "brideName": {
+    "en": "Ei",
+    "ja": "エイ",
+    "my": "အိဖြူဝင်း"
+  },
+  "date": "2026-03-01T10:30:00",
+  "rsvpDeadline": "2026-02-20",
+  "time": {
+    "en": "10:30 AM to 1:00 PM",
+    "ja": "午前10時30分から午後1時まで",
+    "my": "နံနက် (၁၀:၃၀) နာရီမှ (၁:၀၀) နာရီအထိ"
+  },
+  "day": "Friday",
+  "location": {
+    "name": {
+      "en": "𝚃𝚑𝚎𝚛𝚊𝚟𝚊𝚍𝚊 𝙼𝚘𝚗𝚊𝚜𝚝𝚎𝚛𝚢 ( 𝚆𝚊𝚔𝚘𝚜𝚑𝚒 )",
+      "ja": "テーラワーダ・パリヤッティ僧院（ミャンマー上座部仏教僧院）",
+      "my": "𝚆𝚊𝚔𝚘𝚜𝚑𝚒 မြန်မာဘုန်းကြီးကျောင်း"
+    },
+    "address": {
+      "en": "2 Chome-27-18 Niikura, Wako, Saitama 351-0115",
+      "ja": "埼玉県和光市新倉２−２７−１８",
+      "my": "2 Chome-27-18 Niikura, Wako, Saitama 351-0115"
+    },
+    "mapUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3236.181391797309!2d139.62001697637282!3d35.795479972550645!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6018eb8098d1e8d9%3A0x499148df5523bc90!2zVEhFUkFWQURBIE1PTkFTVEVSWSAoV2Frb3NoaSDhgJnhgLzhgJThgLrhgJnhgKzhgJjhgK_hgJThgLrhgLjhgIDhgLzhgK7hgLjhgIDhgLvhgLHhgKzhgIThgLrhgLgp!5e0!3m2!1sen!2sjp!4v1768835219076!5m2!1sen!2sjp"
+  },
+  "googleScriptUrl": "https://script.google.com/macros/s/AKfycbxLv_-YZtUTn8satMzznMKH1jl8TRqpu71rs2SvW31x_izuLhZBT2QoIQHTAn-vqTFQ/exec",
+  "images": {
+    "groom": "photos/[event-folder]/groom.jpg",
+    "bride": "photos/[event-folder]/bride.jpg"
+  },
+  "gallery": [
+    "/photos/[event-folder]/gallery1.jpeg",
+    "/photos/[event-folder]/cover.jpeg",
+    "/photos/[event-folder]/gallery2.jpeg",
+    "/photos/[event-folder]/gallery3.jpeg",
+    "/photos/[event-folder]/gallery4.jpeg",
+    "/photos/[event-folder]/gallery5.jpeg",
+    "/photos/[event-folder]/gallery6.jpeg"
+  ],
+  "showCountdown": true,
+  "showRsvp": true,
+  "showGallery": true
+}
