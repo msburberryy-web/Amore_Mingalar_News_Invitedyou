@@ -25,6 +25,7 @@
     "my": "ပြည့်ပြည့်ဖြိုး"
   },
   "date": "2026-03-07T10:30:00",
+  "rsvpDeadline": "2026-02-25",
   "time": {
     "en": "10:30 AM to 1:00 PM",
     "ja": "午前10時30分から午後1時まで",
@@ -50,7 +51,19 @@
     "bride": "photos/[event-folder]/bride.jpg"
   },
   "gallery": [
-    "photos/[event-folder]/cover.jpg"
+    "/photos/[event-folder]/gallery1.jpg",
+    "/photos/[event-folder]/cover.jpg",
+    "/photos/[event-folder]/gallery2.jpg",
+    "/photos/[event-folder]/gallery3.jpg",
+    "/photos/[event-folder]/gallery4.jpg",
+    "/photos/[event-folder]/gallery5.jpg",
+    "/photos/[event-folder]/gallery6.jpg",
+    "/photos/[event-folder]/gallery7.jpg",
+    "/photos/[event-folder]/gallery8.jpg",
+    "/photos/[event-folder]/gallery9.jpg",
+    "/photos/[event-folder]/gallery10.jpg",
+    "/photos/[event-folder]/gallery11.jpg",
+    "/photos/[event-folder]/gallery12.jpg"
   ],
   "showCountdown": true,
   "showRsvp": true,

@@ -51,13 +51,13 @@
     "bride": "photos/[event-folder]/bride.jpg"
   },
   "gallery": [
-    "/photos/[event-folder]/gallery1.jpeg",
-    "/photos/[event-folder]/cover.jpeg",
-    "/photos/[event-folder]/gallery2.jpeg",
-    "/photos/[event-folder]/gallery3.jpeg",
-    "/photos/[event-folder]/gallery4.jpeg",
-    "/photos/[event-folder]/gallery5.jpeg",
-    "/photos/[event-folder]/gallery6.jpeg"
+    "/photos/[event-folder]/gallery1.jpg",
+    "/photos/[event-folder]/cover.jpg",
+    "/photos/[event-folder]/gallery2.jpg",
+    "/photos/[event-folder]/gallery3.jpg",
+    "/photos/[event-folder]/gallery4.jpg",
+    "/photos/[event-folder]/gallery5.jpg",
+    "/photos/[event-folder]/gallery6.jpg"
   ],
   "showCountdown": true,
   "showRsvp": true,

@@ -113,6 +113,10 @@ const App: React.FC = () => {
   const eventId = params.get('event') || 'template';
   const normalizedEventId = eventId.replace(/\./g, '_');
 
+  // Logic to restrict Admin Panel access
+  const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+  const isAdminAllowed = isLocal && params.get('mode') === 'admin';
+
   const fixAssetPath = (path: string): string => {
     if (!path || typeof path !== 'string') return path;
     if (path.startsWith('http') || path.startsWith('data:')) return path;
@@ -211,14 +215,17 @@ const App: React.FC = () => {
 
       <LanguageSwitch current={lang} onChange={setLang} />
 
-      <div className="fixed bottom-4 right-4 z-50 flex flex-col gap-2">
-        <button 
-          onClick={() => setIsAdminOpen(true)}
-          className="p-3 bg-white/80 backdrop-blur-md rounded-full shadow-lg text-wedding-text hover:text-wedding-gold transition-colors"
-        >
-          <Settings size={24} />
-        </button>
-      </div>
+      {/* Admin Toggle - Only visible on localhost with mode=admin */}
+      {isAdminAllowed && (
+        <div className="fixed bottom-4 right-4 z-50 flex flex-col gap-2">
+          <button 
+            onClick={() => setIsAdminOpen(true)}
+            className="p-3 bg-white/80 backdrop-blur-md rounded-full shadow-lg text-wedding-text hover:text-wedding-gold transition-colors"
+          >
+            <Settings size={24} />
+          </button>
+        </div>
+      )}
 
       <button 
         onClick={() => setIsMuted(!isMuted)}
@@ -227,7 +234,7 @@ const App: React.FC = () => {
         {isMuted ? <VolumeX size={24} /> : <Volume2 size={24} />}
       </button>
 
-      {isAdminOpen && (
+      {isAdminAllowed && isAdminOpen && (
         <AdminPanel data={data} onUpdate={handleUpdate} onClose={() => setIsAdminOpen(false)} />
       )}
 
@@ -373,7 +380,7 @@ const App: React.FC = () => {
                 )}
 
                 <button 
-                  onClick={() => setShowRsvp(true)}
+                  onClick={() => setShowRsvp(false)}
                   className="bg-wedding-text text-white px-10 md:px-20 py-6 md:py-8 rounded-full font-serif text-xl md:text-4xl shadow-2xl hover:bg-wedding-gold transition-all transform hover:-translate-y-2 active:scale-95 uppercase tracking-[0.2em]"
                 >
                   {labels.rsvp}
