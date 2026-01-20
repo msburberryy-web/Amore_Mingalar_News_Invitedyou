@@ -46,11 +46,12 @@
   },
   "googleScriptUrl": "https://script.google.com/macros/s/AKfycbwK7R7OO0kGb0Aw_0Ej2FjaxLwfR-4VNo_sisw2nYE6xe9Gbbl_Y317S3b5K51UCfIO6A/exec",
   "images": {
-    "hero": "photos/aung_oo/cover.jpg",
-    "groom": "photos/aung_oo/groom.jpg",
-    "bride": "photos/aung_oo/bride.jpg"
+    "groom": "photos/[event-folder]/groom.jpg",
+    "bride": "photos/[event-folder]/bride.jpg"
   },
-  "gallery": [],
+  "gallery": [
+    "photos/[event-folder]/cover.jpg"
+  ],
   "showCountdown": true,
   "showRsvp": true,
   "showGallery": true

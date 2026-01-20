@@ -28,17 +28,17 @@ const GoldHeart = ({ className = "w-6 h-6" }: { className?: string }) => (
 );
 
 const ElegantName: React.FC<{ name: string; lang: Language }> = ({ name, lang }) => {
-  if (lang !== 'en') return <span className="break-words px-2 tracking-normal text-center max-w-full font-bold" style={{ letterSpacing: '0' }}>{name}</span>;
+  if (lang !== 'en') return <span className="break-words px-2 tracking-normal text-center max-w-full font-bold block" style={{ letterSpacing: '0' }}>{name}</span>;
   
   const firstChar = name.charAt(0);
   const rest = name.slice(1);
   
   return (
-    <span className="inline-flex items-center justify-center px-4 md:px-8 overflow-visible flex-nowrap shrink-0">
-      <span className="font-['Great_Vibes'] text-5xl xs:text-6xl md:text-8xl gold-text-shimmer leading-none py-6 px-4 inline-block transform-gpu overflow-visible">
+    <span className="inline-flex items-center justify-center flex-nowrap shrink-0 max-w-full overflow-visible">
+      <span className="font-['Great_Vibes'] text-5xl xs:text-6xl md:text-8xl gold-text-shimmer leading-none py-4 px-2 inline-block transform-gpu overflow-visible">
         {firstChar}
       </span>
-      <span className="text-gray-900 text-sm xs:text-base md:text-3xl tracking-tight font-serif italic -ml-4 md:-ml-8 mt-6 md:mt-12 whitespace-nowrap">
+      <span className="text-gray-900 text-sm xs:text-base md:text-3xl tracking-tight font-serif italic -ml-3 md:-ml-6 mt-4 md:mt-10 whitespace-nowrap">
         {rest}
       </span>
     </span>
@@ -109,7 +109,6 @@ const App: React.FC = () => {
   const [showRsvp, setShowRsvp] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
-  // Parse URL parameters
   const params = new URLSearchParams(window.location.search);
   const eventId = params.get('event') || 'template';
   const normalizedEventId = eventId.replace(/\./g, '_');
@@ -125,62 +124,36 @@ const App: React.FC = () => {
   useEffect(() => {
     const loadData = async () => {
       console.group(`Wedding Invite Loader: ${normalizedEventId}`);
-      
       let mergedData = { ...INITIAL_DATA };
       const cacheBuster = `?t=${Date.now()}`;
 
       const safeFetchJson = async (path: string) => {
         try {
           const finalPath = `./${path}${cacheBuster}`;
-          console.log(`Fetching: ${finalPath}`);
           const response = await fetch(finalPath);
-          if (!response.ok) {
-              console.warn(`File not found: ${path} (Status: ${response.status})`);
-              return null;
-          }
-          
+          if (!response.ok) return null;
           const contentType = response.headers.get("content-type");
-          if (!contentType || !contentType.includes("application/json")) {
-            console.warn(`Path ${path} returned non-JSON content type: ${contentType}`);
-            return null;
-          }
-
-          const json = await response.json();
-          return json;
+          if (!contentType || !contentType.includes("application/json")) return null;
+          return await response.json();
         } catch (e) {
-          console.warn(`Failed to process ${path}:`, e);
           return null;
         }
       };
 
       try {
-        // 1. Try to load base default config
         const baseData = await safeFetchJson('wedding-data.json');
-        if (baseData) {
-          console.log("Found base wedding-data.json, merging...");
-          mergedData = deepMerge(mergedData, baseData);
-        }
-
-        // 2. Try to load the specific event file
+        if (baseData) mergedData = deepMerge(mergedData, baseData);
         const eventFileName = `wedding-data_${normalizedEventId}.json`;
         const eventData = await safeFetchJson(eventFileName);
-        
-        if (eventData) {
-          console.log(`Successfully merged event data from ${eventFileName}`);
-          mergedData = deepMerge(mergedData, eventData);
-        } else {
-          console.warn(`Event-specific file ${eventFileName} missing. Displaying template.`);
-        }
-
+        if (eventData) mergedData = deepMerge(mergedData, eventData);
         setData(mergedData);
       } catch (err) {
-        console.error("Critical error during data loading sequence:", err);
+        console.error("Data loading error:", err);
       } finally {
         console.groupEnd();
         setIsLoading(false);
       }
     };
-
     loadData();
   }, [normalizedEventId]);
 
@@ -191,9 +164,7 @@ const App: React.FC = () => {
         audioRef.current.loop = true;
       }
     }
-    return () => {
-      audioRef.current?.pause();
-    };
+    return () => audioRef.current?.pause();
   }, [data.musicUrl]);
 
   useEffect(() => {
@@ -204,14 +175,12 @@ const App: React.FC = () => {
     }
   }, [isMuted, isEnvelopeOpen]);
 
-  const handleUpdate = (newData: WeddingData) => {
-    setData(newData);
-  };
+  const handleUpdate = (newData: WeddingData) => setData(newData);
 
   const labels = {
     en: { schedule: 'SCHEDULE', location: 'LOCATION', rsvp: 'RSVP', countdown: 'COUNTDOWN', days: 'Days', hours: 'Hours', mins: 'Mins', secs: 'Secs' },
     ja: { schedule: '挙式・披露宴', location: 'アクセス', rsvp: 'ご出欠', countdown: 'カウントダウン', days: '日', hours: '時間', mins: '分', secs: '秒' },
-    my: { schedule: 'အစီအစဉ်', location: 'တည်နေရာ', rsvp: 'တက်ရောက်ရန်', countdown: 'အချိန်ကျန်', days: 'ရက်', hours: 'နာရီ', mins: 'မိနစ်', secs: 'စက္ကန့်' }
+    my: { schedule: 'အစီအစဉ်', location: 'တည်နေရာ', rsvp: 'တက်ရောက်ရန်', countdown: 'ကျန်ရှိသောအချိန်', days: 'ရက်', hours: 'နာရီ', mins: 'မိနစ်', secs: 'စက္ကန့်' }
   }[lang];
 
   if (isLoading) {
@@ -265,19 +234,29 @@ const App: React.FC = () => {
       <WeddingCardTemplate>
         <main className="flex flex-col items-center">
           {/* Hero Section */}
-          <section className="min-h-[100dvh] flex flex-col items-center justify-center text-center py-20">
-            <ScrollReveal>
+          <section className="min-h-[100dvh] flex flex-col items-center justify-center text-center py-10 md:py-20">
+            <ScrollReveal className="w-full flex flex-col items-center">
               <KanoteOrnament className="w-24 md:w-48 opacity-40 mb-12" />
-              <div className="flex flex-col md:flex-row items-center justify-center gap-2 mb-8">
-                <ElegantName name={data.groomName[lang]} lang={lang} />
-                <GoldHeart className="w-8 h-8 md:w-12 md:h-12 animate-pulse" />
-                <ElegantName name={data.brideName[lang]} lang={lang} />
+              
+              <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8 mb-12 w-full max-w-4xl px-4">
+                <div className="flex-1 w-full text-center">
+                  <ElegantName name={data.groomName[lang]} lang={lang} />
+                </div>
+                <div className="flex items-center justify-center shrink-0 h-12 w-12 md:h-20 md:w-20">
+                  <GoldHeart className="w-10 h-10 md:w-16 md:h-16 animate-pulse" />
+                </div>
+                <div className="flex-1 w-full text-center">
+                  <ElegantName name={data.brideName[lang]} lang={lang} />
+                </div>
               </div>
-              <p className="text-lg md:text-2xl text-wedding-gold tracking-[0.2em] mb-12 italic opacity-80">
+
+              <p className="text-lg md:text-2xl text-wedding-gold tracking-[0.2em] mb-12 italic opacity-80 max-w-xl mx-auto px-4">
                 {data.welcomeMessage[lang]}
               </p>
+              
               <UniversalDateDisplay dateStr={data.date} day={data.day} lang={lang} />
-              <ChevronDown className="mt-20 w-8 h-8 text-wedding-gold/40 animate-bounce" />
+              
+              <ChevronDown className="mt-16 w-8 h-8 text-wedding-gold/40 animate-bounce" />
             </ScrollReveal>
           </section>
 
@@ -367,10 +346,12 @@ const App: React.FC = () => {
           {data.showRsvp && (
             <section className="py-48 text-center">
               <ScrollReveal>
-                <GoldHeart className="w-20 h-20 mx-auto mb-12 opacity-40 animate-pulse" />
+                <div className="flex items-center justify-center mb-12">
+                  <GoldHeart className="w-20 h-20 opacity-40 animate-pulse" />
+                </div>
                 <button 
                   onClick={() => setShowRsvp(true)}
-                  className="bg-wedding-text text-white px-20 py-8 rounded-full font-serif text-2xl md:text-4xl shadow-2xl hover:bg-wedding-gold transition-all transform hover:-translate-y-2 active:scale-95 uppercase tracking-[0.2em]"
+                  className="bg-wedding-text text-white px-10 md:px-20 py-6 md:py-8 rounded-full font-serif text-xl md:text-4xl shadow-2xl hover:bg-wedding-gold transition-all transform hover:-translate-y-2 active:scale-95 uppercase tracking-[0.2em]"
                 >
                   {labels.rsvp}
                 </button>

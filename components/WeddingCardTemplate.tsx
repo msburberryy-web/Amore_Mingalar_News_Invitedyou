@@ -109,7 +109,7 @@ const WeddingCardTemplate: React.FC<Props> = ({ className = "", children }) => {
         All content sections pass through here. 
         Horizontal padding ensures text doesn't touch the golden edges.
       */}
-      <div className="relative z-10 w-full px-12 xs:px-14 md:px-48 pb-20">
+      <div className="relative z-10 w-full px-8 xs:px-10 md:px-48 pb-20 overflow-x-hidden">
         {children}
       </div>
     </div>

@@ -84,9 +84,11 @@
         background: linear-gradient(90deg, #bf953f, #fcf6ba, #b38728, #fcf6ba, #aa771c);
         background-size: 200% auto;
         -webkit-background-clip: text;
-        background-clip: text; /* Standard property for compatibility */
         -webkit-text-fill-color: transparent;
+        background-clip: text;
+        color: transparent;
         animation: shimmer 5s linear infinite;
+        display: inline-block;
       }
 
       @media print {
