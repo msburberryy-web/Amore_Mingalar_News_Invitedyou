@@ -380,7 +380,7 @@ const App: React.FC = () => {
                 )}
 
                 <button 
-                  onClick={() => setShowRsvp(false)}
+                  onClick={() => setShowRsvp(true)}
                   className="bg-wedding-text text-white px-10 md:px-20 py-6 md:py-8 rounded-full font-serif text-xl md:text-4xl shadow-2xl hover:bg-wedding-gold transition-all transform hover:-translate-y-2 active:scale-95 uppercase tracking-[0.2em]"
                 >
                   {labels.rsvp}
