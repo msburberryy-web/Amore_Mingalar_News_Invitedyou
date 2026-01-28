@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { WeddingData, INITIAL_DATA, Language } from './types';
-import { Volume2, VolumeX, Settings, Heart, ChevronDown, Loader2, MapPin, Map as MapIcon, ExternalLink, Image as ImageIcon, Calendar } from 'lucide-react';
+import { Volume2, VolumeX, Settings, Heart, ChevronDown, Loader2, MapPin, Map as MapIcon, ExternalLink, Image as ImageIcon, Calendar, User, Utensils, Camera, HelpCircle } from 'lucide-react';
 import EnvelopeOverlay, { KanoteOrnament } from './components/EnvelopeOverlay';
 import WeddingCardTemplate from './components/WeddingCardTemplate';
 import LanguageSwitch from './components/LanguageSwitch';
@@ -113,7 +113,6 @@ const App: React.FC = () => {
   const eventId = params.get('event') || 'template';
   const normalizedEventId = eventId.replace(/\./g, '_');
 
-  // Logic to restrict Admin Panel access
   const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
   const isAdminAllowed = isLocal && params.get('mode') === 'admin';
 
@@ -207,6 +206,16 @@ const App: React.FC = () => {
     );
   }
 
+  const getScheduleIcon = (icon: string) => {
+    switch(icon) {
+      case 'meal': return <Utensils size={16} />;
+      case 'camera': return <Camera size={16} />;
+      case 'ceremony': return <Heart size={16} />;
+      case 'map': return <MapPin size={16} />;
+      default: return <User size={16} />;
+    }
+  };
+
   return (
     <div className={`min-h-[100dvh] selection:bg-wedding-gold/20 ${lang === 'my' ? 'font-myanmar' : 'font-sans'}`} style={{ backgroundColor: data.theme.backgroundTint }}>
       {data.visuals.enableEnvelope && !isEnvelopeOpen && (
@@ -215,7 +224,6 @@ const App: React.FC = () => {
 
       <LanguageSwitch current={lang} onChange={setLang} />
 
-      {/* Admin Toggle - Only visible on localhost with mode=admin */}
       {isAdminAllowed && (
         <div className="fixed bottom-4 right-4 z-50 flex flex-col gap-2">
           <button 
@@ -267,56 +275,40 @@ const App: React.FC = () => {
             </ScrollReveal>
           </section>
 
-          {/* Message Section */}
-          {data.message && (
-            <section className="py-20 text-center max-w-2xl px-6">
-              <ScrollReveal>
-                <div className="text-2xl md:text-4xl font-serif text-wedding-text leading-relaxed italic">
-                  "{data.message[lang]}"
-                </div>
-              </ScrollReveal>
-            </section>
-          )}
-
           {/* Profile Section */}
           <ProfileSection data={data} language={lang} fixPath={fixAssetPath} />
 
-          {/* Gallery Section */}
-          {data.showGallery && data.gallery && data.gallery.length > 0 && (
-            <section className="py-32 w-full max-w-6xl px-6">
-              <ScrollReveal>
-                <h2 className="text-3xl md:text-5xl font-serif text-wedding-gold text-center mb-20 tracking-widest uppercase">{labels.gallery}</h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-                  {data.gallery.map((img, idx) => (
-                    <div 
-                      key={idx} 
-                      className="aspect-[4/5] overflow-hidden rounded-3xl border-[6px] border-wedding-gold/10 hover:border-wedding-gold/40 transition-all duration-1000 shadow-xl bg-wedding-sand/5 group"
-                    >
-                      <img 
-                        src={fixAssetPath(img)} 
-                        alt={`Gallery ${idx + 1}`} 
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-[2s]"
-                        loading="lazy"
-                      />
-                    </div>
-                  ))}
-                </div>
-              </ScrollReveal>
-            </section>
-          )}
-
-          {/* Schedule Section */}
+          {/* Schedule Section - Refined Proportions */}
           {data.showSchedule && data.schedule.length > 0 && (
-            <section className="py-32 w-full max-w-4xl px-6">
+            <section className="py-24 w-full max-w-3xl px-6 relative">
               <ScrollReveal>
-                <h2 className="text-3xl md:text-5xl font-serif text-wedding-gold text-center mb-20 tracking-widest">{labels.schedule}</h2>
-                <div className="space-y-12">
+                <h2 className="text-2xl md:text-4xl font-serif text-wedding-gold text-center mb-16 tracking-widest">{labels.schedule}</h2>
+                <div className="relative space-y-4">
+                  {/* Vertical connecting line - subtle */}
+                  <div className="absolute left-[23px] md:left-[31px] top-8 bottom-8 w-[1px] bg-gradient-to-b from-transparent via-[#d68c8c]/20 to-transparent"></div>
+                  
                   {data.schedule.map((item, idx) => (
-                    <div key={idx} className="flex gap-8 items-start group">
-                      <div className="text-xl md:text-2xl font-serif text-wedding-gold pt-1 shrink-0">{item.time}</div>
-                      <div className="w-px h-12 bg-wedding-gold/20 self-stretch"></div>
-                      <div className="text-xl md:text-3xl text-wedding-text group-hover:text-wedding-gold transition-colors">
-                        {item.title[lang]}
+                    <div key={idx} className="relative bg-white/60 backdrop-blur-md rounded-xl p-4 md:p-5 border border-gray-100 border-l-[4px] border-[#d68c8c] shadow-sm flex items-center gap-4 md:gap-8 hover:shadow-md transition-all duration-500 group">
+                      {/* Icon Container - Scaled down */}
+                      <div className="relative shrink-0 w-10 h-10 md:w-12 md:h-12 rounded-full bg-[#fce4ec] flex items-center justify-center text-[#d68c8c] z-10">
+                        {getScheduleIcon(item.icon)}
+                      </div>
+                      
+                      {/* Time and Title Row - Balanced text sizes */}
+                      <div className="flex flex-col md:flex-row md:items-baseline gap-1 md:gap-8 flex-1">
+                        <div className="shrink-0">
+                          <div className="text-sm md:text-xl font-bold text-[#b57c7c] tracking-wider font-elegant">{item.time}</div>
+                        </div>
+                        <div className="flex-1">
+                          <div className="text-base md:text-2xl font-bold text-wedding-text leading-tight group-hover:text-wedding-gold transition-colors duration-300">
+                            {item.title[lang]}
+                          </div>
+                          {item.note && (
+                            <div className="text-[10px] md:text-sm text-gray-400 font-myanmar mt-1 opacity-90 italic">
+                              {item.note[lang]}
+                            </div>
+                          )}
+                        </div>
                       </div>
                     </div>
                   ))}
@@ -345,6 +337,30 @@ const App: React.FC = () => {
               )}
             </ScrollReveal>
           </section>
+
+          {/* Gallery Section */}
+          {data.showGallery && data.gallery && data.gallery.length > 0 && (
+            <section className="py-32 w-full max-w-6xl px-6">
+              <ScrollReveal>
+                <h2 className="text-3xl md:text-5xl font-serif text-wedding-gold text-center mb-20 tracking-widest uppercase">{labels.gallery}</h2>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+                  {data.gallery.map((img, idx) => (
+                    <div 
+                      key={idx} 
+                      className="aspect-[4/5] overflow-hidden rounded-3xl border-[6px] border-wedding-gold/10 hover:border-wedding-gold/40 transition-all duration-1000 shadow-xl bg-wedding-sand/5 group"
+                    >
+                      <img 
+                        src={fixAssetPath(img)} 
+                        alt={`Gallery ${idx + 1}`} 
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-[2s]"
+                        loading="lazy"
+                      />
+                    </div>
+                  ))}
+                </div>
+              </ScrollReveal>
+            </section>
+          )}
 
           {/* Countdown Section */}
           {data.showCountdown && (

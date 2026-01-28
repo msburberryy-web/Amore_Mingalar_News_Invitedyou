@@ -8,8 +8,11 @@ export interface LocalizedString {
 
 export interface ScheduleItem {
   time: string;
+  subTimeLabel?: LocalizedString;
   title: LocalizedString;
-  icon: 'ceremony' | 'reception' | 'party' | 'toast' | 'meal' | 'camera' | string;
+  locationLabel?: LocalizedString;
+  note?: LocalizedString;
+  icon: 'ceremony' | 'reception' | 'party' | 'toast' | 'meal' | 'camera' | 'user' | 'map' | string;
 }
 
 export interface FaqItem {
@@ -90,8 +93,8 @@ export interface WeddingData {
   showRsvp: boolean; 
   showSchedule: boolean;
   showGallery: boolean;
-  showCountdown: boolean;
   showProvider: boolean;
+  showCountdown: boolean;
   schedule: ScheduleItem[];
   faq: FaqItem[];
   images: {
@@ -160,7 +163,7 @@ export const INITIAL_DATA: WeddingData = {
   location: {
     name: {
       en: 'THERAVADA MONASTERY',
-      ja: 'テーラワーダ・パリヤッティ僧院',
+      ja: 'テーラワーဒါ・パリヤッティ僧院',
       my: 'ထေရဝါဒပရိယတ္တိကျောင်းတော်ကြီး'
     },
     address: {
@@ -189,7 +192,23 @@ export const INITIAL_DATA: WeddingData = {
   showGallery: true, 
   showCountdown: true,
   showProvider: true,
-  schedule: [],
+  schedule: [
+    {
+      time: '10:00 AM',
+      title: { en: 'Arrival & Ceremony', ja: '到着・儀式', my: 'ဧည့်ပရိသတ်များ စတင်ဝင်ရောက်ခြင်း၊ တရားနာ၊ ရေစက်ချ အခမ်းအနား' },
+      icon: 'ceremony'
+    },
+    {
+      time: '11:00 AM',
+      title: { en: 'Food Offering & Reception', ja: 'お供え・披露宴', my: 'ဆွမ်းကပ်၊ ဆွမ်းဘုန်းပေးခြင်းနှင့် ဧည့်ခံကျွေးမွေးခြင်း' },
+      icon: 'meal'
+    },
+    {
+      time: '12:30 PM',
+      title: { en: 'Photo Session & Farewell', ja: '集合写真・閉会', my: 'စုပေါင်းမှတ်တမ်းတင် ဓာတ်ပုံရိုက်ခြင်းနှင့်နှုတ်ဆက်ခြင်း' },
+      icon: 'camera'
+    }
+  ],
   faq: [],
   images: {
     hero: 'https://images.unsplash.com/photo-1519741497674-611481863552',

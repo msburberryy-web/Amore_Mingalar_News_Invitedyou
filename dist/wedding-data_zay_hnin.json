@@ -15,23 +15,23 @@
     "my": "ကျွန်ုပ်တို့၏ မင်္ဂလာဦးဆွမ်းကျွေးပွဲသို့ ကြွရောက်ချီးမြှင့်ပေးပါရန် လေးစားစွာဖြင့် ဖိတ်ကြားအပ်ပါသည်။"
   },
   "groomName": {
-    "en": "TT",
-    "ja": "ティティ",
-    "my": "တင့်ထူးအောင်"
+    "en": "ZAY AUNG AUNG HTAY",
+    "ja": "ゼイアウンアウンテー",
+    "my": "ဇေအောင်အောင်ဌေး"
   },
   "brideName": {
-    "en": "Ei",
-    "ja": "エイ",
-    "my": "အိဖြူဝင်း"
+    "en": "HNIN YEE MOE",
+    "ja": "ニンイーモー",
+    "my": "နှင်းရည်မိုး"
   },
-  "date": "2026-03-01T10:30:00",
-  "rsvpDeadline": "2026-02-20",
+  "date": "2026-04-18T10:30:00",
+  "rsvpDeadline": "2026-03-31",
   "time": {
     "en": "10:30 AM to 1:00 PM",
     "ja": "午前10時30分から午後1時まで",
     "my": "နံနက် (၁၀:၃၀) နာရီမှ (၁:၀၀) နာရီအထိ"
   },
-  "day": "Sunday",
+  "day": "Saturday",
   "location": {
     "name": {
       "en": "𝚃𝚑𝚎𝚛𝚊𝚟𝚊𝚍𝚊 𝙼𝚘𝚗𝚊𝚜𝚝𝚎𝚛𝚢 ( 𝚆𝚊𝚔𝚘𝚜𝚑𝚒 )",
@@ -45,19 +45,13 @@
     },
     "mapUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3236.181391797309!2d139.62001697637282!3d35.795479972550645!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6018eb8098d1e8d9%3A0x499148df5523bc90!2zVEhFUkFWQURBIE1PTkFTVEVSWSAoV2Frb3NoaSDhgJnhgLzhgJThgLrhgJnhgKzhgJjhgK_hgJThgLrhgLjhgIDhgLzhgK7hgLjhgIDhgLvhgLHhgKzhgIThgLrhgLgp!5e0!3m2!1sen!2sjp!4v1768835219076!5m2!1sen!2sjp"
   },
-  "googleScriptUrl": "https://script.google.com/macros/s/AKfycbxLv_-YZtUTn8satMzznMKH1jl8TRqpu71rs2SvW31x_izuLhZBT2QoIQHTAn-vqTFQ/exec",
+  "googleScriptUrl": "https://script.google.com/macros/s/AKfycbxOLpaWFYM9ibLYauA2p7hsfGtj-g-A971bILqQ8Dpf2_NiTur4_laC1VvTeONIRCjPxw/exec",
   "images": {
     "groom": "photos/[event-folder]/groom.jpg",
     "bride": "photos/[event-folder]/bride.jpg"
   },
   "gallery": [
-    "/photos/[event-folder]/gallery1.jpg",
-    "/photos/[event-folder]/cover.jpg",
-    "/photos/[event-folder]/gallery2.jpg",
-    "/photos/[event-folder]/gallery3.jpg",
-    "/photos/[event-folder]/gallery4.jpg",
-    "/photos/[event-folder]/gallery5.jpg",
-    "/photos/[event-folder]/gallery6.jpg"
+    "/photos/[event-folder]/gallery1.jpg"
   ],
   "showCountdown": true,
   "showRsvp": true,

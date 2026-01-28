@@ -67,5 +67,36 @@
   ],
   "showCountdown": true,
   "showRsvp": true,
-  "showGallery": true
+  "showSchedule": true,
+  "showProvider": true,
+  "musicUrl": "https://ia800203.us.archive.org/21/items/BurmeseTraditionalMusic/BurmeseTraditionalMusic-SaungGauk-BurmeseHarp.mp3",
+  "schedule": [
+    {
+      "time": "10:00 AM",
+      "title": {
+        "en": "Arrival & Ceremony",
+        "ja": "到着・儀式",
+        "my": "ဧည့်ပရိသတ်များ စတင်ဝင်ရောက်ခြင်း၊ တရားနာ၊ ရေစက်ချ အခမ်းအနား"
+      },
+      "icon": "ceremony"
+    },
+    {
+      "time": "11:00 AM",
+      "title": {
+        "en": "Food Offering & Reception",
+        "ja": "お供え・披露宴",
+        "my": "ဆွမ်းကပ်၊ ဆွမ်းဘုန်းပေးခြင်းနှင့် ဧည့်ခံကျွေးမွေးခြင်း"
+      },
+      "icon": "meal"
+    },
+    {
+      "time": "12:30 PM",
+      "title": {
+        "en": "Photo Session & Farewell",
+        "ja": "集合写真・閉会",
+        "my": "စုပေါင်းမှတ်တမ်းတင် ဓာတ်ပုံရိုက်ခြင်းနှင့်နှုတ်ဆက်ခြင်း"
+      },
+      "icon": "camera"
+    }
+  ]
 }
