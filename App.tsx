@@ -28,17 +28,17 @@ const GoldHeart = ({ className = "w-6 h-6" }: { className?: string }) => (
 );
 
 const ElegantName: React.FC<{ name: string; lang: Language }> = ({ name, lang }) => {
-  if (lang !== 'en') return <span className="break-words px-2 tracking-normal text-center max-w-full font-bold block" style={{ letterSpacing: '0' }}>{name}</span>;
+  if (lang !== 'en') return <span className="break-words px-2 tracking-normal text-center max-w-full font-bold block text-4xl xs:text-5xl md:text-7xl" style={{ letterSpacing: '0' }}>{name}</span>;
   
   const firstChar = name.charAt(0);
   const rest = name.slice(1);
   
   return (
     <span className="inline-flex items-center justify-center flex-nowrap shrink-0 max-w-full overflow-visible">
-      <span className="font-['Great_Vibes'] text-5xl xs:text-6xl md:text-8xl gold-text-shimmer leading-none py-4 px-2 inline-block transform-gpu overflow-visible">
+      <span className="font-['Great_Vibes'] text-6xl xs:text-7xl md:text-9xl gold-text-shimmer leading-none py-4 px-2 inline-block transform-gpu overflow-visible">
         {firstChar}
       </span>
-      <span className="text-gray-900 text-sm xs:text-base md:text-3xl tracking-tight font-serif italic -ml-3 md:-ml-6 mt-4 md:mt-10 whitespace-nowrap">
+      <span className="text-gray-900 text-base xs:text-xl md:text-4xl tracking-tight font-serif italic -ml-3 md:-ml-6 mt-4 md:mt-10 whitespace-nowrap">
         {rest}
       </span>
     </span>
