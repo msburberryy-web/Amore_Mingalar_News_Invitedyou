@@ -17,12 +17,12 @@
   "groomName": {
     "en": "ZIN MYO NAUNG",
     "ja": "ジンミョーノウン",
-    "my": "ZIN MYO NAUNG"
+    "my": "ဇင်မျိုးနောင်"
   },
   "brideName": {
     "en": "KHIN SAN MON",
     "ja": "キンサンモン",
-    "my": "KHIN SAN MON"
+    "my": "ခင်စန်းမွန်"
   },
   "date": "2026-05-22T10:30:00",
   "rsvpDeadline": "2026-05-10",
@@ -52,7 +52,6 @@
   },
   "gallery": [
     "photos/[event-folder]/cover.jpg",
-    "photos/[event-folder]/gallery1.jpg",
     "photos/[event-folder]/gallery2.jpg",
     "photos/[event-folder]/gallery2.jpg",
     "photos/[event-folder]/gallery3.jpg",
