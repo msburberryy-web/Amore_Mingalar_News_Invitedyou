@@ -46,10 +46,17 @@
     "mapUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3237.8569805085!2d139.69346307732079!3d35.75431987256375!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x601892cc00e4e0c1%3A0xed851e1cfe37f378!2zTUNXQSAo4YCZ4YC84YCU4YC64YCZ4YCs4YCY4YCv4YCU4YC64YC44YCA4YC84YCu4YC44YCA4YC74YCx4YCs4YCE4YC64YC4KSDhgJDhgK3hgK_hgIDhgLvhgK3hgK8!5e0!3m2!1sen!2sjp!4v1775187765877!5m2!1sen!2sjp"
   },
   "images": {
-    "groom": "photos/[event-folder]/groom.jpg",
+    "groom": "https://lh3.googleusercontent.com/d/14UT3DiRVtu2GsvNJQfigD_3t6MQJQ7RL",
     "bride": "https://lh3.googleusercontent.com/d/12eEPpJRT2TH17wjfBkDnhJrv4NFdVfvU"
   },
-  "gallery": [],
+  "gallery": [
+    "https://lh3.googleusercontent.com/d/19maf09JJivl1nnvAchj1SNJ9QWybKTaY",
+    "https://lh3.googleusercontent.com/d/1yB74RtG5vphHZnNXoKYMeKctXq1ydh8i",
+    "https://lh3.googleusercontent.com/d/1wbZ5O8xgUTUM9muNbn9gLwOCvbKCIJJ2",
+    "https://lh3.googleusercontent.com/d/1aQr9NpDkvOcZ55_JtIiQPsU2ykxR4ZL4",
+    "https://lh3.googleusercontent.com/d/1PiwHRNsqbhiRJQdtxrHKfFh6B5FMsMA-",
+    "https://lh3.googleusercontent.com/d/1txbhPL_oMGhG8FX3LAftUFpKf6QUu8R9"
+  ],
   "showCountdown": true,
   "showRsvp": true,
   "showGallery": true
