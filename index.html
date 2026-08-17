@@ -73,6 +73,13 @@
         letter-spacing: 0.02em;
         line-height: 1.6;
       }
+      /* Tailwind's tracking-* utilities set wide letter-spacing tuned for Latin
+         uppercase text. Myanmar's stacked vowels/medials render as broken,
+         disconnected glyphs under that spacing, so neutralize it wherever it
+         appears inside Myanmar-language content. */
+      .font-myanmar [class*="tracking-"] {
+        letter-spacing: 0.02em !important;
+      }
       .font-elegant {
         font-family: "Cormorant Garamond", serif;
       }

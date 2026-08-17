@@ -182,7 +182,7 @@ END:VCALENDAR`;
 
   if (status === 'success') {
     return (
-      <div className="min-h-screen bg-wedding-sand/30 flex items-center justify-center p-6 animate-slide-in">
+      <div className={`min-h-screen bg-wedding-sand/30 flex items-center justify-center p-6 animate-slide-in ${language === 'my' ? 'font-myanmar' : ''}`}>
         <div className="bg-white p-8 md:p-12 rounded-2xl shadow-xl max-w-lg w-full text-center">
           <div className="w-16 h-16 bg-wedding-gold text-white rounded-full flex items-center justify-center mx-auto mb-6">
             <Check size={32} />
@@ -226,7 +226,7 @@ END:VCALENDAR`;
   }
 
   return (
-    <div className="min-h-screen bg-white animate-slide-in relative">
+    <div className={`min-h-screen bg-white animate-slide-in relative ${language === 'my' ? 'font-myanmar' : ''}`}>
       <div className="max-w-2xl mx-auto px-6 py-12 md:py-20">
         <button 
           onClick={onBack} 
