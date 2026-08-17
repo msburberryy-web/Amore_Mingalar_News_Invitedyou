@@ -1,0 +1,56 @@
+{
+  "title": {
+    "en": "Wedding Invitation",
+    "ja": "結婚披露宴のご案内",
+    "my": "မင်္ဂလာဦးဆွမ်းကျွေး ဖိတ်ကြားလွှာ"
+  },
+  "coverTitle": {
+    "en": "Wedding Announcement",
+    "ja": "結婚のご報告",
+    "my": "မင်္ဂလာသတင်းလွှာ"
+  },
+  "welcomeMessage": {
+    "en": "We cordially invite you to join our Wedding Reception.",
+    "ja": "皆様にご臨席賜りたく ご案内申し上げます",
+    "my": "ကျွန်ုပ်တို့၏ မင်္ဂလာဦးဆွမ်းကျွေးပွဲသို့ ကြွရောက်ချီးမြှင့်ပေးပါရန် လေးစားစွာဖြင့် ဖိတ်ကြားအပ်ပါသည်။"
+  },
+  "groomName": {
+    "en": "Banyar Kyaw Kyaw Tun",
+    "ja": "バニャー・チョー・チョー・トゥン",
+    "my": "ဗညားကျော်ကျော်ထွန်း"
+  },
+  "brideName": {
+    "en": "Aye Chan Phyo",
+    "ja": "エー・チャン・ピョー",
+    "my": "အေးချမ်းဖြိုး"
+  },
+  "date": "2026-09-06T10:30:00",
+  "rsvpDeadline": "2026-08-21",
+  "time": {
+    "en": "10:30 AM to 1:00 PM",
+    "ja": "午前10時30分から午後1時まで",
+    "my": "နံနက် (၁၀:၃၀) နာရီမှ (၁:၀၀) နာရီအထိ"
+  },
+  "day": "Sunday",
+  "location": {
+    "name": {
+      "en": "MBS Myanmar Theravada Buddhist Association",
+      "ja": "MBS ミャンマー上座部仏教協会",
+      "my": "MBS မြန်မာထေရဝါဒဗုဒ္ဓဘာသာအသင်း"
+    },
+    "address": {
+      "en": "39-1 Nakacho, Itabashi City, Tokyo 173-0022",
+      "ja": "〒173-0022 東京都板橋区仲町39-1",
+      "my": "39-1 Nakacho, Itabashi City, Tokyo 173-0022"
+    },
+    "mapUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3237.8569805085!2d139.69346307732079!3d35.75431987256375!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x601892cc00e4e0c1%3A0xed851e1cfe37f378!2zTUNXQSAo4YCZ4YC84YCU4YC64YCZ4YCs4YCY4YCv4YCU4YC64YC44YCA4YC84YCu4YC44YCA4YC74YCx4YCs4YCE4YC64YC4KSDhgJDhgK3hgK_hgIDhgLvhgK3hgK8!5e0!3m2!1sen!2sjp!4v1775187765877!5m2!1sen!2sjp"
+  },
+  "images": {
+    "groom": "photos/[event-folder]/groom.jpg",
+    "bride": "https://lh3.googleusercontent.com/d/12eEPpJRT2TH17wjfBkDnhJrv4NFdVfvU"
+  },
+  "gallery": [],
+  "showCountdown": true,
+  "showRsvp": true,
+  "showGallery": true
+}
